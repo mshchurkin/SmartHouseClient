@@ -1,0 +1,15 @@
+\\mac\home\documents\visual studio 2017\Projects\SmartHouseClient\SmartHouseClient\bin\Debug\SmartHouseClient.exe.config
+\\mac\home\documents\visual studio 2017\Projects\SmartHouseClient\SmartHouseClient\bin\Debug\SmartHouseClient.exe
+\\mac\home\documents\visual studio 2017\Projects\SmartHouseClient\SmartHouseClient\bin\Debug\SmartHouseClient.pdb
+\\mac\home\documents\visual studio 2017\Projects\SmartHouseClient\SmartHouseClient\obj\Debug\SmartHouseClient.csprojResolveAssemblyReference.cache
+\\mac\home\documents\visual studio 2017\Projects\SmartHouseClient\SmartHouseClient\obj\Debug\LoginWindow.g.cs
+\\mac\home\documents\visual studio 2017\Projects\SmartHouseClient\SmartHouseClient\obj\Debug\App.g.cs
+\\mac\home\documents\visual studio 2017\Projects\SmartHouseClient\SmartHouseClient\obj\Debug\SmartHouseClient_MarkupCompile.cache
+\\mac\home\documents\visual studio 2017\Projects\SmartHouseClient\SmartHouseClient\obj\Debug\SmartHouseClient_MarkupCompile.lref
+\\mac\home\documents\visual studio 2017\Projects\SmartHouseClient\SmartHouseClient\obj\Debug\LoginWindow.baml
+\\mac\home\documents\visual studio 2017\Projects\SmartHouseClient\SmartHouseClient\obj\Debug\SmartHouseClient.g.resources
+\\mac\home\documents\visual studio 2017\Projects\SmartHouseClient\SmartHouseClient\obj\Debug\SmartHouseClient.Properties.Resources.resources
+\\mac\home\documents\visual studio 2017\Projects\SmartHouseClient\SmartHouseClient\obj\Debug\SmartHouseClient.csproj.GenerateResource.Cache
+\\mac\home\documents\visual studio 2017\Projects\SmartHouseClient\SmartHouseClient\obj\Debug\SmartHouseClient.csproj.CoreCompileInputs.cache
+\\mac\home\documents\visual studio 2017\Projects\SmartHouseClient\SmartHouseClient\obj\Debug\SmartHouseClient.exe
+\\mac\home\documents\visual studio 2017\Projects\SmartHouseClient\SmartHouseClient\obj\Debug\SmartHouseClient.pdb
