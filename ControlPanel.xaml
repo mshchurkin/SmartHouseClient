@@ -1,0 +1,47 @@
+﻿<Window x:Class="SmartHouseClient.ControlPanel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmartHouseClient"
+        mc:Ignorable="d"
+        Title="ControlPanel" Height="300" Width="410">
+    <Grid>
+        <TabControl>
+            <TabItem x:Name="gadgetsTab" Header="Устройства">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem x:Name="roomsTab" Header="Помещения">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem x:Name="scenarioTab" Header="Сценарии">
+                <Grid Background="#FFE5E5E5">
+                    <Expander Header="Создать сценарий" HorizontalAlignment="Left" Height="180" Margin="10,10,0,0" VerticalAlignment="Top" Width="307">
+                        <Grid Background="#FFE5E5E5">
+                            <ComboBox x:Name="gadgetsComboBox" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="120"/>
+                            <Label Content="Условие:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                            <Label Content="Действие:" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top"/>
+                            <Button Content="Button" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top" Width="75"/>
+                            <ComboBox HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Width="120"/>
+                        </Grid>
+                    </Expander>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="logTab" Header="Журнал событий">
+                <Grid Background="#FFE5E5E5">
+                    <RichTextBox x:Name="logTextBox" Margin="10">
+                        <FlowDocument>
+                            <Paragraph>
+                                <Run Text="События:"/>
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="statisticsTab" Header="Статистика">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
