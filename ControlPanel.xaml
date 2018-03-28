@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartHouseClient"
         mc:Ignorable="d"
-        Title="Панель контроля" Height="253.925" Width="465" MinWidth="465" MinHeight="300">
+        Title="Панель контроля" Height="391" Width="465" MinWidth="465" MinHeight="300">
     <Grid>
         <TabControl SelectionChanged="TabControl_SelectionChanged">
             <TabItem x:Name="gadgetsTab" Header="Устройства">
@@ -27,16 +27,14 @@
                         <Label Content="Прихожая" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16"/>
                         <CheckBox Content="Люстра" HorizontalAlignment="Left" Margin="17,108,0,0" VerticalAlignment="Top"/>
                         <Label Content="Температура: 21 град.С" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
-                        <CheckBox Content="Теплый пол, 24 град.С" HorizontalAlignment="Left" Margin="16,67,0,0" VerticalAlignment="Top"/>
-                        <Slider HorizontalAlignment="Left" Margin="18,85,0,0" VerticalAlignment="Top" Width="140"/>
-                        <CheckBox Content="Подстветка зеркала" HorizontalAlignment="Left" Margin="17,128,0,0" VerticalAlignment="Top"/>
+                        <CheckBox x:Name="floorCheckBox" Content="Теплый пол, 24 град.С" HorizontalAlignment="Left" Margin="16,67,0,0" VerticalAlignment="Top" IsChecked="True" Unchecked="floorCheckBox_Unchecked" Checked="floorCheckBox_Checked" Click="floorCheckBox_Click"/>
                         <Label Content="Гостиная" HorizontalAlignment="Left" Margin="10,159,0,0" VerticalAlignment="Top" FontSize="16"/>
                         <CheckBox Content="Люстра" HorizontalAlignment="Left" Margin="16,216,0,0" VerticalAlignment="Top"/>
                         <Label Content="Температура: 21 град.С" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top"/>
-                        <Slider HorizontalAlignment="Left" Margin="18,85,0,0" VerticalAlignment="Top" Width="140"/>
+                        <Slider x:Name="floorSlider" HorizontalAlignment="Left" Margin="18,87,0,0" VerticalAlignment="Top" Width="140" SmallChange="0.5" Maximum="30" Value="24" ValueChanged="floorSlider_ValueChanged"/>
                         <CheckBox Content="Подстветка зеркала" HorizontalAlignment="Left" Margin="17,128,0,0" VerticalAlignment="Top"/>
-                        <CheckBox Content="Кондиционер, 21 град.С" HorizontalAlignment="Left" Margin="16,236,0,0" VerticalAlignment="Top" IsChecked="True"/>
-                        <Slider HorizontalAlignment="Left" Margin="18,256,0,0" VerticalAlignment="Top" Width="140" Maximum="30" SmallChange="0.5" Value="21"/>
+                        <CheckBox x:Name="conditionCheckBox" Content="Кондиционер, 21 град.С" HorizontalAlignment="Left" Margin="16,236,0,0" VerticalAlignment="Top" IsChecked="True" Unchecked="conditionCheckBox_Unchecked" Checked="conditionCheckBox_Checked" Click="conditionCheckBox_Click"/>
+                        <Slider x:Name="conditionSlider" HorizontalAlignment="Left" Margin="18,256,0,0" VerticalAlignment="Top" Width="140" Maximum="30" SmallChange="0.5" Value="21" ValueChanged="conditionSlider_ValueChanged"/>
 
                     </Grid>
                 </ScrollViewer>

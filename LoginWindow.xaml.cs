@@ -39,14 +39,16 @@ namespace SmartHouseClient
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //    Socket s = new Socket(AddressFamily.InterNetwork,
-            //SocketType.Stream,
-            //ProtocolType.Tcp);
-            //    s.Connect();
-            ControlPanel controlPanel = new ControlPanel();
-            controlPanel.Show();
-            this.Close();
-            controlPanel.Activate();
+            if ((loginTextBox.Text == "egor") && (passBox.Password == "12345"))
+            {
+                ControlPanel controlPanel = new ControlPanel();
+                controlPanel.Show();
+                this.Close();
+            } else
+            {
+                errorLabel.Content = "Неправильный логин или пароль";
+            }
+            
         }
 
 

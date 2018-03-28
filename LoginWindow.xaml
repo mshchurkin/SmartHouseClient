@@ -7,11 +7,12 @@
         mc:Ignorable="d"
         Title="Вход в систему" Height="300" Width="250">
     <Grid Background="WhiteSmoke">
-        <Label Foreground="Blue" FontSize="18" HorizontalAlignment="Center" Grid.Row="0" Margin="0,40,0,0">Контроль умным зданием</Label>
+        <Label Foreground="Blue" FontSize="18" HorizontalAlignment="Center" Grid.Row="0" Margin="8,10,8,0">Контроль умным зданием</Label>
         <Label Foreground="Blue" FontSize="16" HorizontalAlignment="Center" Grid.Row="1" Margin="0,70,0,0">Логин</Label>
-        <TextBox HorizontalAlignment="Center" Height="25" Width="200" Margin="0,99,0,140" FontSize="18" BorderBrush="Blue"/>
+        <TextBox x:Name="loginTextBox" HorizontalAlignment="Center" Height="25" Width="200" Margin="0,99,0,140" FontSize="18" BorderBrush="Blue"/>
         <Label Foreground="Blue" FontSize="16" HorizontalAlignment="Center" Margin="0,124,0,0" Content="Пароль"/>
-        <PasswordBox HorizontalAlignment="Center" Height="25" Width="200" Margin="0,140,0,77" FontSize="18" BorderBrush="Blue" />
+        <PasswordBox x:Name="passBox" HorizontalAlignment="Center" Height="25" Width="200" Margin="0,140,0,77" FontSize="18" BorderBrush="Blue" />
         <Button HorizontalAlignment="Center" Height="30" Width="50" Margin="0,194,0,40" Foreground="Blue" FontSize="18" Background="WhiteSmoke" BorderBrush="WhiteSmoke" Click="Button_Click"> Вход </Button>
+        <Label x:Name="errorLabel" Content="" HorizontalAlignment="Left" Margin="21,52,0,0" VerticalAlignment="Top" Foreground="Red"/>
     </Grid>
 </Window>
