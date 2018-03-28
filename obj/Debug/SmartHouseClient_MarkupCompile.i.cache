@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-\\mac\home\documents\visual studio 2017\Projects\SmartHouseClient\SmartHouseClient\obj\Debug\
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\
 SmartHouseClient
 none
 false
 DEBUG;TRACE
-\\mac\home\documents\visual studio 2017\Projects\SmartHouseClient\SmartHouseClient\App.xaml
-2629211036
+C:\Users\smd\Documents\GitHub\SmartHouseClient\App.xaml
+51931337859
 
-101547459410
+13-1338121240
 131569487696
-LoginWindow.xaml;SubscriptionSelect.xaml;
+ControlPanel.xaml;FirstWindow.xaml;LoginWindow.xaml;SignUpWindow.xaml;SubscriptionSelect.xaml;
 
-True
+False
 

@@ -13,3 +13,25 @@
 \\mac\home\documents\visual studio 2017\Projects\SmartHouseClient\SmartHouseClient\obj\Debug\SmartHouseClient.csproj.CoreCompileInputs.cache
 \\mac\home\documents\visual studio 2017\Projects\SmartHouseClient\SmartHouseClient\obj\Debug\SmartHouseClient.exe
 \\mac\home\documents\visual studio 2017\Projects\SmartHouseClient\SmartHouseClient\obj\Debug\SmartHouseClient.pdb
+C:\Users\smd\Documents\GitHub\SmartHouseClient\bin\Debug\SmartHouseClient.exe.config
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.exe
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.pdb
+C:\Users\smd\Documents\GitHub\SmartHouseClient\bin\Debug\SmartHouseClient.exe
+C:\Users\smd\Documents\GitHub\SmartHouseClient\bin\Debug\SmartHouseClient.pdb
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.csprojResolveAssemblyReference.cache
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\ControlPanel.g.cs
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\FirstWindow.g.cs
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\LoginWindow.g.cs
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SignUpWindow.g.cs
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SubscriptionSelect.g.cs
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\App.g.cs
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient_MarkupCompile.cache
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient_MarkupCompile.lref
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\ControlPanel.baml
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\FirstWindow.baml
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\LoginWindow.baml
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SignUpWindow.baml
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SubscriptionSelect.baml
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.g.resources
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.Properties.Resources.resources
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.csproj.GenerateResource.Cache

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartHouseClient"
         mc:Ignorable="d"
-        Title="ControlPanel" Height="300" Width="410">
+        Title="Панель контроля" Height="300" Width="465">
     <Grid>
         <TabControl>
             <TabItem x:Name="gadgetsTab" Header="Устройства">
@@ -39,6 +39,9 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="statisticsTab" Header="Статистика">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem x:Name="usersTab" Header="Жильцы">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
