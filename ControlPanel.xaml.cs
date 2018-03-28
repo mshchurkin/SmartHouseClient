@@ -19,9 +19,23 @@ namespace SmartHouseClient
     /// </summary>
     public partial class ControlPanel : Window
     {
-        public ControlPanel()
+        public string TOKEN = "";
+        public ControlPanel(bool isIntegrator, string token)
         {
             InitializeComponent();
+            TOKEN = token;
+            if (isIntegrator == false)
+            {
+                ScenarioMaker.Visibility = Visibility.Hidden;
+                housesTab.Visibility = Visibility.Hidden;
+                addSensorBtn.Visibility = Visibility.Hidden;
+                addGadgetBtn.Visibility = Visibility.Hidden;
+                addUserBtn.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                settingsTab.Visibility = Visibility.Hidden;
+            }
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -35,10 +49,6 @@ namespace SmartHouseClient
             subWindow.ShowDialog();
         }
 
-        private void floorSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            floorCheckBox.Content = "Температура: " + (int)(floorSlider.Value) + " град.С";
-        }
 
         private void floorCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
@@ -56,36 +66,16 @@ namespace SmartHouseClient
         {
         }
 
-        private void conditionSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            conditionCheckBox.Content = "Температура: " + (int)(conditionSlider.Value) + " град.С";
 
-        }
 
         private void floorCheckBox_Click(object sender, RoutedEventArgs e)
         {
-            if (floorCheckBox.IsChecked == true)
-            {
-                floorSlider.IsEnabled = true;
-            }
-            else
-            {
-                floorSlider.IsEnabled = false;
-            }
+           
         }
 
         private void conditionCheckBox_Click(object sender, RoutedEventArgs e)
         {
-            if (conditionCheckBox.IsChecked == true)
-            {
-                conditionSlider.IsEnabled = true;
-
-            }
-            else
-            {
-                conditionSlider.IsEnabled = false;
-
-            }
+            
         }
     }
 }

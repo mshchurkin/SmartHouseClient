@@ -39,9 +39,11 @@ namespace SmartHouseClient
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            bool isIntegrator = true;
+            string token = "";
             if ((loginTextBox.Text == "egor") && (passBox.Password == "12345"))
             {
-                ControlPanel controlPanel = new ControlPanel();
+                ControlPanel controlPanel = new ControlPanel(isIntegrator, token );
                 controlPanel.Show();
                 this.Close();
             } else

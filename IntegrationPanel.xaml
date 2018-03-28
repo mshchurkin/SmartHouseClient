@@ -33,17 +33,18 @@
                     <Button x:Name="addUserBtn" Content="Добавить пользователя" Margin="0,354,10,10" HorizontalAlignment="Right" Width="143" Grid.Column="1"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="gadgetsTab" Header="Устройства">
+            <TabItem x:Name="gadgetsTab" Header="Устройства" Height="22" VerticalAlignment="Top">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="165*"/>
+                        <ColumnDefinition Width="111*"/>
+                        <ColumnDefinition Width="54*"/>
                         <ColumnDefinition Width="271*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="Выберите дом:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <ComboBox HorizontalAlignment="Left" Margin="159,14,0,0" VerticalAlignment="Top" Width="161" Grid.ColumnSpan="2"/>
-                    <Label Content="Выберите пользователя:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-                    <ComboBox HorizontalAlignment="Left" Margin="159,41,0,0" VerticalAlignment="Top" Width="161" Grid.ColumnSpan="2"/>
-                    <DataGrid Margin="10,72,10,120" Grid.ColumnSpan="2"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="47.915,14,0,0" VerticalAlignment="Top" Width="161" Grid.ColumnSpan="2" Grid.Column="1"/>
+                    <Label Content="Выберите пользователя:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="47.915,41,0,0" VerticalAlignment="Top" Width="161" Grid.ColumnSpan="2" Grid.Column="1"/>
+                    <DataGrid Margin="10,72,10,120" Grid.ColumnSpan="3"/>
 
                 </Grid>
             </TabItem>
