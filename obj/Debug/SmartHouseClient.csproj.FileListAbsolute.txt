@@ -60,3 +60,5 @@ C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.csproj
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.csproj.CoreCompileInputs.cache
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.exe
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.pdb
+\\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\AddSensor.g.cs
+\\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\AddSensor.baml

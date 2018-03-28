@@ -57,6 +57,9 @@
     <Compile Include="ControlPanel.xaml.cs">
       <DependentUpon>ControlPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditSensor.xaml.cs">
+      <DependentUpon>EditSensor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FirstWindow.xaml.cs">
       <DependentUpon>FirstWindow.xaml</DependentUpon>
     </Compile>
@@ -69,9 +72,16 @@
     <Compile Include="SubscriptionSelect.xaml.cs">
       <DependentUpon>SubscriptionSelect.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddSensor.xaml.cs">
+      <DependentUpon>AddSensor.xaml</DependentUpon>
+    </Compile>
     <Page Include="ControlPanel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditSensor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FirstWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -98,6 +108,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SubscriptionSelect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddSensor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

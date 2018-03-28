@@ -77,5 +77,27 @@ namespace SmartHouseClient
         {
             
         }
+
+        private void addSensorBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddSensor addSensor = new AddSensor("");
+            addSensor.Show();
+        }
+
+        private void addHouseBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            EditSensor editSensor = new EditSensor();
+            editSensor.Show();
+        }
+
+        private void addUserBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SignUpWindow signUpWindow = new SignUpWindow();
+        }
     }
 }
