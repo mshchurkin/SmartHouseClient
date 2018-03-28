@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartHouseClient"
         mc:Ignorable="d"
-        Title="Панель контроля" Height="300" Width="465">
+        Title="Панель контроля" Height="300" Width="465" MinWidth="465" MinHeight="300">
     <Grid>
-        <TabControl>
+        <TabControl SelectionChanged="TabControl_SelectionChanged">
             <TabItem x:Name="gadgetsTab" Header="Устройства">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
@@ -16,7 +16,7 @@
             </TabItem>
             <TabItem x:Name="scenarioTab" Header="Сценарии">
                 <Grid Background="#FFE5E5E5">
-                    <Expander Header="Создать сценарий" HorizontalAlignment="Left" Height="180" Margin="10,10,0,0" VerticalAlignment="Top" Width="307">
+                    <Expander Header="Создать сценарий" HorizontalAlignment="Left" Height="166" Margin="10,10,0,0" VerticalAlignment="Top" Width="307">
                         <Grid Background="#FFE5E5E5">
                             <ComboBox x:Name="gadgetsComboBox" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="120"/>
                             <Label Content="Условие:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
@@ -41,7 +41,7 @@
             <TabItem x:Name="statisticsTab" Header="Статистика">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-            <TabItem x:Name="usersTab" Header="Жильцы">
+            <TabItem x:Name="usersTab" Header="Жильцы" Margin="-2,-2,-2,2">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>

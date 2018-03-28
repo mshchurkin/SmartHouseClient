@@ -15,18 +15,13 @@ using System.Windows.Shapes;
 namespace SmartHouseClient
 {
     /// <summary>
-    /// Логика взаимодействия для ControlPanel.xaml
+    /// Логика взаимодействия для IntegrationPanel.xaml
     /// </summary>
-    public partial class ControlPanel : Window
+    public partial class IntegrationPanel : Window
     {
-        public ControlPanel()
+        public IntegrationPanel()
         {
             InitializeComponent();
-        }
-
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

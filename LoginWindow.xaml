@@ -12,6 +12,6 @@
         <TextBox HorizontalAlignment="Center" Height="25" Width="200" Margin="0,99,0,140" FontSize="18" BorderBrush="Blue"/>
         <Label Foreground="Blue" FontSize="16" HorizontalAlignment="Center" Margin="0,124,0,0" Content="Пароль"/>
         <PasswordBox HorizontalAlignment="Center" Height="25" Width="200" Margin="0,140,0,77" FontSize="18" BorderBrush="Blue" />
-        <Button HorizontalAlignment="Center" Height="30" Width="50" Margin="0,194,0,40" Foreground="Blue" FontSize="18" Background="WhiteSmoke" BorderBrush="WhiteSmoke"> Вход </Button>
+        <Button HorizontalAlignment="Center" Height="30" Width="50" Margin="0,194,0,40" Foreground="Blue" FontSize="18" Background="WhiteSmoke" BorderBrush="WhiteSmoke" Click="Button_Click"> Вход </Button>
     </Grid>
 </Window>
