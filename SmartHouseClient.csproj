@@ -54,8 +54,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddGadget.xaml.cs">
+      <DependentUpon>AddGadget.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ControlPanel.xaml.cs">
       <DependentUpon>ControlPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditGadget.xaml.cs">
+      <DependentUpon>EditGadget.xaml</DependentUpon>
     </Compile>
     <Compile Include="EditSensor.xaml.cs">
       <DependentUpon>EditSensor.xaml</DependentUpon>
@@ -66,6 +72,9 @@
     <Compile Include="IntegrationPanel.xaml.cs">
       <DependentUpon>IntegrationPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ScenarioCreator.xaml.cs">
+      <DependentUpon>ScenarioCreator.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
@@ -75,9 +84,17 @@
     <Compile Include="AddSensor.xaml.cs">
       <DependentUpon>AddSensor.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddGadget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ControlPanel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditGadget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditSensor.xaml">
       <SubType>Designer</SubType>
@@ -103,6 +120,10 @@
       <DependentUpon>LoginWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ScenarioCreator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SignUpWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

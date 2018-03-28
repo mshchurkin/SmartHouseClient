@@ -15,14 +15,12 @@ using System.Windows.Shapes;
 namespace SmartHouseClient
 {
     /// <summary>
-    /// Interaction logic for EditSensor.xaml
+    /// Interaction logic for AddGadget.xaml
     /// </summary>
-    public partial class EditSensor : Window
+    public partial class AddGadget : Window
     {
-        bool isDiscrete = false;
-        public EditSensor(bool isDiscrete)
+        public AddGadget()
         {
-            this.isDiscrete = isDiscrete;
             InitializeComponent();
         }
 
@@ -42,7 +40,7 @@ namespace SmartHouseClient
                 }
                 else
                 {
-                    if ((isDiscrete== true) && (k > 1))
+                    if ((discrete.IsChecked == true) && (k > 1))
                     {
                         MessageBox.Show("Неверный ввод порога значения. Доступные значения от 0 до 1024 для аналоговых датчиков и занчения 0/1 для дискретных");
                     }

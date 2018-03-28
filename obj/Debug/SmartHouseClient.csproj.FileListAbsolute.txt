@@ -38,7 +38,6 @@ C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.csproj
 \\Mac\Home\Documents\GitHub\SmartHouseClient\bin\Debug\SmartHouseClient.exe.config
 \\Mac\Home\Documents\GitHub\SmartHouseClient\bin\Debug\SmartHouseClient.exe
 \\Mac\Home\Documents\GitHub\SmartHouseClient\bin\Debug\SmartHouseClient.pdb
-\\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.csprojResolveAssemblyReference.cache
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\ControlPanel.g.cs
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\FirstWindow.g.cs
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\IntegrationPanel.g.cs
@@ -62,3 +61,11 @@ C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.csproj
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.pdb
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\AddSensor.g.cs
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\AddSensor.baml
+\\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\AddGadget.g.cs
+\\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\EditGadget.g.cs
+\\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\EditSensor.g.cs
+\\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\ScenarioCreator.g.cs
+\\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\AddGadget.baml
+\\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\EditGadget.baml
+\\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\EditSensor.baml
+\\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\ScenarioCreator.baml

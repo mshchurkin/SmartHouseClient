@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 \\Mac\Home\Documents\GitHub\SmartHouseClient\App.xaml
-8227759244
+111385092783
 
-16955531851
+191856229927
 131569487696
-ControlPanel.xaml;EditSensor.xaml;FirstWindow.xaml;IntegrationPanel.xaml;LoginWindow.xaml;SignUpWindow.xaml;SubscriptionSelect.xaml;AddSensor.xaml;
+AddGadget.xaml;ControlPanel.xaml;EditGadget.xaml;EditSensor.xaml;FirstWindow.xaml;IntegrationPanel.xaml;LoginWindow.xaml;ScenarioCreator.xaml;SignUpWindow.xaml;SubscriptionSelect.xaml;AddSensor.xaml;
 
 True
 

@@ -26,7 +26,8 @@ namespace SmartHouseClient
             TOKEN = token;
             if (isIntegrator == false)
             {
-                ScenarioMaker.Visibility = Visibility.Hidden;
+                addScenario.Visibility = Visibility.Hidden;
+                deleteScenario.Visibility = Visibility.Hidden;
                 housesTab.Visibility = Visibility.Hidden;
                 addSensorBtn.Visibility = Visibility.Hidden;
                 addGadgetBtn.Visibility = Visibility.Hidden;
@@ -91,13 +92,18 @@ namespace SmartHouseClient
 
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            EditSensor editSensor = new EditSensor();
+            EditSensor editSensor = new EditSensor(false);
             editSensor.Show();
         }
 
         private void addUserBtn_Click(object sender, RoutedEventArgs e)
         {
             SignUpWindow signUpWindow = new SignUpWindow();
+        }
+
+        private void addScenario_Click(object sender, RoutedEventArgs e)
+        {
+            ScenarioCreator scenarioCreator = new ScenarioCreator("");
         }
     }
 }

@@ -1,20 +1,20 @@
-﻿<Window x:Class="SmartHouseClient.AddSensor"
+﻿<Window x:Class="SmartHouseClient.AddGadget"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartHouseClient"
         mc:Ignorable="d"
-        Title="Добавление датчика" Height="294.68" Width="300">
+        Title="AddGadget" Height="267.021" Width="300">
     <Grid>
         <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="15,10,0,0">Наименование</Label>
         <TextBox x:Name="nameBox" Height="30" Width="200"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,40,0,0"></TextBox>
         <Label FontSize="14" VerticalAlignment="Top" Margin="10,70,0,0">Включен:</Label>
         <CheckBox x:Name="isActiveCheckBox" VerticalAlignment="Top" Margin="100,79,0,0"></CheckBox>
-        <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="10,100,0,0">Порог нештатной ситуации</Label>
-        <TextBox x:Name="checkTxt" Height="30" Width="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,130,0,0"></TextBox>
+        <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="10,100,0,0">Значение</Label>
+        <TextBox x:Name="checkTxt" Height="30" Width="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,100,0,0"></TextBox>
         <RadioButton x:Name="discrete" Height="40" Margin="20,0,0,50" VerticalAlignment="Bottom">Дискретный</RadioButton>
         <RadioButton x:Name="analog" Height="40" Margin="150,0,0,50" Content="Аналоговый" VerticalAlignment="Bottom"/>
-        <Button Height="30" Width="150" VerticalAlignment="Bottom" Margin="10" Click="Button_Click">Добавить датчик</Button>
+        <Button Height="30" Width="150" VerticalAlignment="Bottom" Margin="10" Click="Button_Click">Добавить механизм</Button>
     </Grid>
 </Window>
