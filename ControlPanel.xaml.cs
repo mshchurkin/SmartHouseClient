@@ -28,5 +28,11 @@ namespace SmartHouseClient
         {
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SubscriptionSelect subWindow = new SubscriptionSelect();
+            subWindow.ShowDialog();
+        }
     }
 }

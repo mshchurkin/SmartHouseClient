@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartHouseClient"
         mc:Ignorable="d"
-        Title="Выбор плана подписки" Height="500" Width="520">
+        Title="Выбор тарифа обслуживания" Height="500" Width="520">
     <Grid Background="WhiteSmoke">
-        <Label HorizontalAlignment="Center" Grid.Row="0" Foreground="Blue" FontSize="18" >Выбор плана подписки</Label>
+        <Label HorizontalAlignment="Center" Grid.Row="0" Foreground="Blue" FontSize="18" >Выбор тарифа обслуживания</Label>
         <Grid Grid.Row="1" Margin="0,30,0,0" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"></ColumnDefinition>
@@ -23,7 +23,7 @@
                 <Label HorizontalAlignment="Center" Grid.Column="1" Margin="0,220,0,0" Foreground="Blue" FontSize="14" >Аналитика</Label>
             </Grid>
             <Grid  Grid.Column="1">
-                <Label HorizontalAlignment="Center" Grid.Column="1" Foreground="Blue" FontSize="14" >Стандарт</Label>
+                <Label HorizontalAlignment="Center" Grid.Column="1" Foreground="Blue" FontSize="14" >Базовый</Label>
                 <Path Width="16" Height="16" Margin="0,-330,0,0" SnapsToDevicePixels="False"
          Stroke="Green" Fill="Green" StrokeThickness="1"
          Data="M 12.4227,0.00012207C 12.4867,0.126587 12.5333,0.274536 
@@ -68,7 +68,7 @@
                 <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="30" Width="Auto" Margin="0,0,0,20" Foreground="Blue" FontSize="18" Background="WhiteSmoke" BorderBrush="WhiteSmoke">Бесплатно</Button>
             </Grid>
             <Grid  Grid.Column="2">
-                <Label HorizontalAlignment="Center" Grid.Column="1" Foreground="Blue" FontSize="14" >Супер</Label>
+                <Label HorizontalAlignment="Center" Grid.Column="1" Foreground="Blue" FontSize="14" >Расширенный</Label>
                 <Path Width="16" Height="16" Margin="0,-330,0,0"  SnapsToDevicePixels="False"
          Stroke="Green" Fill="Green" StrokeThickness="1"
          Data="M 12.4227,0.00012207C 12.4867,0.126587 12.5333,0.274536 
@@ -109,10 +109,10 @@
                         </PathGeometry>
                     </Path.Data>
                 </Path>
-                <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="30" Width="Auto" Margin="0,0,0,20" Foreground="Blue" FontSize="18" Background="WhiteSmoke" BorderBrush="WhiteSmoke">цена1</Button>
+                <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="30" Width="Auto" Margin="0,0,0,20" Foreground="Blue" FontSize="18" Background="WhiteSmoke" BorderBrush="WhiteSmoke">1000 Р/мес</Button>
             </Grid>
             <Grid  Grid.Column="3">
-                <Label HorizontalAlignment="Center" Grid.Column="1" Foreground="Blue" FontSize="14" >Турбо плюс</Label>
+                <Label HorizontalAlignment="Center" Grid.Column="1" Foreground="Blue" FontSize="14" >Премиум</Label>
                 <Path Width="16" Height="16" Margin="0,-330,0,0" SnapsToDevicePixels="False"
          Stroke="Green" Fill="Green" StrokeThickness="1"
          Data="M 12.4227,0.00012207C 12.4867,0.126587 12.5333,0.274536 
@@ -152,7 +152,7 @@
                         <ScaleTransform ScaleX="2.5" ScaleY="2.5"/>
                     </Path.RenderTransform>
                 </Path>
-                <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="30" Width="Auto" Margin="0,0,0,20" Foreground="Blue" FontSize="18" Background="WhiteSmoke" BorderBrush="WhiteSmoke">цена2</Button>
+                <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="30" Width="Auto" Margin="0,0,0,20" Foreground="Blue" FontSize="18" Background="WhiteSmoke" BorderBrush="WhiteSmoke">3000 Р/мес</Button>
             </Grid>
         </Grid>
     </Grid>

@@ -29,7 +29,7 @@ namespace SmartHouseClient
         public LoginWindow()
         {
             InitializeComponent();
-            Login();
+            //Login();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -43,7 +43,10 @@ namespace SmartHouseClient
             //SocketType.Stream,
             //ProtocolType.Tcp);
             //    s.Connect();
-            
+            ControlPanel controlPanel = new ControlPanel();
+            controlPanel.Show();
+            this.Close();
+            controlPanel.Activate();
         }
 
 
@@ -51,7 +54,7 @@ namespace SmartHouseClient
         private void Login()
         {
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("http://167.99.137.168:22");
-            request.Method = "GET";
+            request.Method = "POST";
             
             request.AllowAutoRedirect = false;
             request.Accept = "*/*";
