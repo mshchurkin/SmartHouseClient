@@ -12,6 +12,8 @@ namespace SmartHouseClient
 
         public String houseId { get; set; }
 
+        public String fieldName { get; set; }
+
         public int value { get; set; }
 
         public String actorType { get; set; }

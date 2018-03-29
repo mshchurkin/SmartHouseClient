@@ -33,7 +33,8 @@ namespace SmartHouseClient
         ObservableCollection<House> readyHouses = new ObservableCollection<House>();
         ObservableCollection<Sensor> readySensors = new ObservableCollection<Sensor>();
         ObservableCollection<Actor> readyActors = new ObservableCollection<Actor>();
-        ObservableCollection<String> houseNames = new ObservableCollection<string>();
+        ObservableCollection<Event> readyJournals = new ObservableCollection<Event>();
+
 
         public ControlPanel(User user)
         {
@@ -202,7 +203,18 @@ namespace SmartHouseClient
                 }
                 readyActors = new ObservableCollection<Actor>(actors.actors);
                 actorsGrid.Items.Refresh();
-        }
+
+                Events events = new Events();
+
+                using (var httpClient = new HttpClient())
+                {
+                    String request = SERVER_PATH + "historyList/" + HOUSE_ID_JOURNALS + "/" + TOKEN;
+                    var json = httpClient.GetStringAsync(request).Result;
+                    events = JsonConvert.DeserializeObject<Events>(json.ToString());
+                }
+                readyJournals = new ObservableCollection<Event>(events.events);
+                journalGrid.Items.Refresh();
+            }
             catch (Exception e) { }
 }
 
@@ -231,6 +243,15 @@ namespace SmartHouseClient
             {
                 House hSEN = housesCombo.SelectedItem as House;
                 HOUSE_ID_SENSORS = hSEN.id;
+            }
+        }
+
+        private void housesCombo2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (housesCombo2.SelectedItem != null)
+            {
+                House hEVENT = housesCombo2.SelectedItem as House;
+                HOUSE_ID_SENSORS = hEVENT.id;
             }
         }
     }

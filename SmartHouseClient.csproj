@@ -79,6 +79,8 @@
     <Compile Include="IntegrationPanel.xaml.cs">
       <DependentUpon>IntegrationPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Event.cs" />
+    <Compile Include="Events.cs" />
     <Compile Include="ScenarioCreator.xaml.cs">
       <DependentUpon>ScenarioCreator.xaml</DependentUpon>
     </Compile>

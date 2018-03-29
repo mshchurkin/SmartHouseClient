@@ -85,7 +85,7 @@
                         <ColumnDefinition Width="370*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="Выберите дом:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                    <ComboBox x:Name="housesCombo2" HorizontalAlignment="Left" Margin="55,10,0,0" VerticalAlignment="Top" Width="161" Grid.Column="1"/>
+                    <ComboBox x:Name="housesCombo2" HorizontalAlignment="Left" Margin="55,10,0,0" VerticalAlignment="Top" Width="161" Grid.Column="1" SelectionChanged="housesCombo2_SelectionChanged"/>
                     <DataGrid x:Name="journalGrid" Margin="10,51,10,35" Grid.ColumnSpan="3" MouseDoubleClick="DataGrid_MouseDoubleClick"/>
                 </Grid>
             </TabItem>

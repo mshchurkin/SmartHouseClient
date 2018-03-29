@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace SmartHouseClient
 {
-    public class Journal
+    public class Events
     {
-        public String time { get; set; }
-
-        public String event { get; set; }
+        public List<Event> events;
     }
 }
