@@ -26,7 +26,7 @@ namespace SmartHouseClient
     /// </summary>
     public partial class LoginWindow : Window
     {
-        String SERVER_PATH = "http://167.99.137.168:8080/api/";
+        String SERVER_PATH = "http://167.99.141.138:8080/api/";
         public LoginWindow()
         {
             InitializeComponent();
@@ -42,7 +42,7 @@ namespace SmartHouseClient
             User user = new User();
             using (var httpClient = new HttpClient())
             {
-                var json =  httpClient.GetStringAsync(SERVER_PATH + "/auth/" + loginTextBox.Text + "/" + passBox.Password);
+                var json =  httpClient.GetStringAsync(SERVER_PATH + "/auth/" + loginTextBox.Text + "/" + passBox.Password).Result;
                 user = JsonConvert.DeserializeObject<User>(json.ToString());
             }
 

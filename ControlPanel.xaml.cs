@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,6 +22,7 @@ namespace SmartHouseClient
     /// </summary>
     public partial class ControlPanel : Window
     {
+        String SERVER_PATH = "http://167.99.141.138:8080/api/";
         public string TOKEN = "";
         public ControlPanel(User user)
         {
@@ -37,6 +41,7 @@ namespace SmartHouseClient
             {
                 settingsTab.Visibility = Visibility.Hidden;
             }
+            LoadData();
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -104,6 +109,63 @@ namespace SmartHouseClient
         private void addScenario_Click(object sender, RoutedEventArgs e)
         {
             ScenarioCreator scenarioCreator = new ScenarioCreator("");
+        }
+
+        private void delSensor_Click(object sender, RoutedEventArgs e)
+        {
+            Sensor s = sensorsGrid.SelectedItem as Sensor;
+            using (var httpClient = new HttpClient())
+            {
+                String request = SERVER_PATH + "/sensorDelete/"+s.id+"/" + TOKEN;
+                var json = httpClient.GetStringAsync(request).Result;
+            }
+        }
+
+        async void TimerCheck()
+        {
+            do
+            {
+                await GetData(1000);
+                
+            } while (true);
+        }
+
+        Task GetData(int time)
+        {
+            return Task.Run(() => {
+                Thread.Sleep(time);
+                LoadData();
+            });
+        }
+
+        private void LoadData()
+        {
+            Sensors sensors = new Sensors();
+            List<Sensor> readySensors = new List<Sensor>();
+            using (var httpClient = new HttpClient())
+            {
+                String request = SERVER_PATH + "/sensors/5abaac6d9433eed9c80fa69a/" + TOKEN;
+                var json = httpClient.GetStringAsync(request).Result;
+                sensors = JsonConvert.DeserializeObject<Sensors>(json.ToString());
+            }
+            readySensors = sensors.sensors;
+            sensorsGrid.Items.Clear();
+            sensorsGrid.ItemsSource = readySensors;
+
+            Actors actors = new Actors();
+            List<Sensor> readyActors = new List<Sensor>(); using (var httpClient = new HttpClient())
+            {
+                String request = SERVER_PATH + "/actors/5abaac6d9433eed9c80fa69a/" + TOKEN;
+                var json = httpClient.GetStringAsync(request).Result;
+                actors = JsonConvert.DeserializeObject<Actors>(json.ToString());
+            }
+            actorsGrid.Items.Clear();
+            actorsGrid.ItemsSource = readyActors;
+        }
+
+        private void deleteGadgetBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

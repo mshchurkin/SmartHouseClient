@@ -57,6 +57,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Actor.cs" />
+    <Compile Include="Actors.cs" />
     <Compile Include="AddGadget.xaml.cs">
       <DependentUpon>AddGadget.xaml</DependentUpon>
     </Compile>
@@ -78,6 +80,8 @@
     <Compile Include="ScenarioCreator.xaml.cs">
       <DependentUpon>ScenarioCreator.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Sensor.cs" />
+    <Compile Include="Sensors.cs" />
     <Compile Include="SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>

@@ -69,3 +69,6 @@ C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.csproj
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\EditGadget.baml
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\EditSensor.baml
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\ScenarioCreator.baml
+\\Mac\Home\Documents\GitHub\SmartHouseClient\bin\Debug\Newtonsoft.Json.dll
+\\Mac\Home\Documents\GitHub\SmartHouseClient\bin\Debug\Newtonsoft.Json.xml
+\\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.csprojResolveAssemblyReference.cache
