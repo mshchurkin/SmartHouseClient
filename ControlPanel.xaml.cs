@@ -20,11 +20,11 @@ namespace SmartHouseClient
     public partial class ControlPanel : Window
     {
         public string TOKEN = "";
-        public ControlPanel(bool isIntegrator, string token)
+        public ControlPanel(User user)
         {
             InitializeComponent();
-            TOKEN = token;
-            if (isIntegrator == false)
+            TOKEN = user.token;
+            if (user.integrator == false)
             {
                 addScenario.Visibility = Visibility.Hidden;
                 deleteScenario.Visibility = Visibility.Hidden;

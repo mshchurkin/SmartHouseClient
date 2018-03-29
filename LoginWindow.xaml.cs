@@ -17,6 +17,7 @@ using System.Web;
 using System.Net.Http;
 using System.Net;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace SmartHouseClient
 {
@@ -25,11 +26,10 @@ namespace SmartHouseClient
     /// </summary>
     public partial class LoginWindow : Window
     {
-        
+        String SERVER_PATH = "http://167.99.137.168:8080/api/";
         public LoginWindow()
         {
             InitializeComponent();
-            //Login();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -39,41 +39,27 @@ namespace SmartHouseClient
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            bool isIntegrator = true;
-            string token = "";
-            if ((loginTextBox.Text == "egor") && (passBox.Password == "12345"))
+            User user = new User();
+            using (var httpClient = new HttpClient())
             {
-                ControlPanel controlPanel = new ControlPanel(isIntegrator, token );
+                var json =  httpClient.GetStringAsync(SERVER_PATH + "/auth/" + loginTextBox.Text + "/" + passBox.Password);
+                user = JsonConvert.DeserializeObject<User>(json.ToString());
+            }
+
+            if (user.token.ToString()!=String.Empty)
+            { 
+                ControlPanel controlPanel = new ControlPanel(user);
                 controlPanel.Show();
                 this.Close();
             } else
             {
                 errorLabel.Content = "Неправильный логин или пароль";
             }
-            
         }
-
-
 
         private void Login()
         {
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("http://167.99.137.168:22");
-            request.Method = "POST";
-            
-            request.AllowAutoRedirect = false;
-            request.Accept = "*/*";
-            request.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
 
-            StringBuilder postData = new StringBuilder();
-            postData.Append("grant_type=" + "password" + "&");
-            postData.Append("username=" + "root" + "&");
-            postData.Append("password=" + "pass1234");
-
-            using (StreamWriter stOut = new StreamWriter(request.GetRequestStream(), Encoding.UTF8))
-            {
-                stOut.Write(postData);
-                stOut.Close();
-            }
         }
     }
 }
