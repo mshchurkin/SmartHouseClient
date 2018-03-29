@@ -12,6 +12,7 @@ namespace SmartHouseClient
         public String password { get; set; }
         public String token { get; set; }
 
-        public bool integrator { get; set; }
+        public String houseId { get; set; }
+        public bool isIntegrator { get; set; }
     }
 }

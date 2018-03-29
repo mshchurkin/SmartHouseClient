@@ -40,21 +40,25 @@ namespace SmartHouseClient
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             User user = new User();
-            using (var httpClient = new HttpClient())
-            {
-                var json =  httpClient.GetStringAsync(SERVER_PATH + "/auth/" + loginTextBox.Text + "/" + passBox.Password).Result;
-                user = JsonConvert.DeserializeObject<User>(json.ToString());
-            }
+            //try
+            //{
+                using (var httpClient = new HttpClient())
+                {
+                    var json = httpClient.GetStringAsync(SERVER_PATH + "/auth/" + loginTextBox.Text + "/" + passBox.Password).Result;
+                    user = JsonConvert.DeserializeObject<User>(json.ToString());
+                }
 
-            if (user.token.ToString()!=String.Empty)
-            { 
-                ControlPanel controlPanel = new ControlPanel(user);
-                controlPanel.Show();
-                this.Close();
-            } else
-            {
-                errorLabel.Content = "Неправильный логин или пароль";
-            }
+                if (user.token.ToString() != String.Empty)
+                {
+                    ControlPanel controlPanel = new ControlPanel(user);
+                    controlPanel.Show();
+                    this.Close();
+                }
+            //}
+            //catch (Exception ex) 
+            //{
+            //    errorLabel.Content = "Неправильный логин или пароль";
+            //}
         }
 
         private void Login()

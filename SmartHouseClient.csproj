@@ -74,6 +74,8 @@
     <Compile Include="FirstWindow.xaml.cs">
       <DependentUpon>FirstWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="House.cs" />
+    <Compile Include="Houses.cs" />
     <Compile Include="IntegrationPanel.xaml.cs">
       <DependentUpon>IntegrationPanel.xaml</DependentUpon>
     </Compile>
