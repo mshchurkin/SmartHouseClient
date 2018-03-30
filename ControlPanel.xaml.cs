@@ -29,12 +29,15 @@ namespace SmartHouseClient
         public string HOUSE_ID_ACTORS = "";
         public string HOUSE_ID_SCENARIOS = "";
         public string HOUSE_ID_JOURNALS = "";
+        public string HOUSE_ID_USERS = "";
 
         ObservableCollection<House> readyHouses = new ObservableCollection<House>();
         ObservableCollection<Sensor> readySensors = new ObservableCollection<Sensor>();
         ObservableCollection<Actor> readyActors = new ObservableCollection<Actor>();
         ObservableCollection<Event> readyJournals = new ObservableCollection<Event>();
-        ObservableCollection<Scenario> readyScenarios = new ObservableCollection<Scenario>();  
+        ObservableCollection<Scenario> readyScenarios = new ObservableCollection<Scenario>();
+        ObservableCollection<User> readyUsers = new ObservableCollection<User>();
+
 
         public ControlPanel(User user)
         {
@@ -50,9 +53,16 @@ namespace SmartHouseClient
                 addScenario.Visibility = Visibility.Hidden;
                 deleteScenario.Visibility = Visibility.Hidden;
                 housesTab.Visibility = Visibility.Hidden;
+                usersTab.Visibility = Visibility.Hidden;
                 addSensorBtn.Visibility = Visibility.Hidden;
                 addGadgetBtn.Visibility = Visibility.Hidden;
                 addUserBtn.Visibility = Visibility.Hidden;
+                delUser.Visibility = Visibility.Hidden;
+                housesCombo.Visibility = Visibility.Hidden;
+                housesACT.Visibility = Visibility.Hidden;
+                housesCombo2.Visibility = Visibility.Hidden;
+                houseComboScen.Visibility = Visibility.Hidden;
+                housesComboBox.Visibility = Visibility.Hidden;
             }
             else
             {
@@ -89,6 +99,7 @@ namespace SmartHouseClient
                     HOUSE_ID_SENSORS = readyHouses[1].id;
                     HOUSE_ID_ACTORS = readyHouses[1].id;
                     HOUSE_ID_JOURNALS = readyHouses[1].id;
+                    HOUSE_ID_USERS = readyHouses[1].id;
                 }
                 housesDataGrid.ItemsSource = readyHouses;
 
@@ -100,6 +111,7 @@ namespace SmartHouseClient
             actorsGrid.ItemsSource = readyActors;
             journalGrid.ItemsSource = readyJournals;
             scenarioDataGrid.ItemsSource = readyScenarios;
+            usersDataGrid.ItemsSource = readyUsers;
 
             TimerCheck(user.isIntegrator);
         }
@@ -127,6 +139,7 @@ namespace SmartHouseClient
                 {
                     String request = SERVER_PATH + "/houseAdd/" + houseAddressTextBox.Text + "/" + TOKEN;
                     var json = httpClient.GetStringAsync(request).Result;
+                    houseAddressTextBox.Text = String.Empty;
                 }
             }
             catch (Exception em) { }
@@ -141,6 +154,7 @@ namespace SmartHouseClient
         private void addUserBtn_Click(object sender, RoutedEventArgs e)
         {
             SignUpWindow signUpWindow = new SignUpWindow(SERVER_PATH, TOKEN);
+            signUpWindow.Show();
         }
 
         private void addScenario_Click(object sender, RoutedEventArgs e)
@@ -162,7 +176,7 @@ namespace SmartHouseClient
         {
             do
             {
-                await GetData(1000, housesNeeded);
+                await GetData(5000, housesNeeded);
 
             } while (true);
         }
@@ -186,10 +200,30 @@ namespace SmartHouseClient
                     using (var httpClient = new HttpClient())
                     {
                         String request = SERVER_PATH + "houses/" + TOKEN;
-                        var json = httpClient.GetStringAsync(request).Result;
-                        houses = JsonConvert.DeserializeObject<Houses>(json.ToString());
+                        try
+                        {
+                            var json = httpClient.GetStringAsync(request).Result;
+                            houses = JsonConvert.DeserializeObject<Houses>(json.ToString());
+                        }catch (Exception edv) { }
                     }
-                    readyHouses = new ObservableCollection<House>(houses.houses);
+                    if (houses.houses != null)
+                    {
+                        App.Current.Dispatcher.Invoke(() =>
+                        {
+                            readyHouses = new ObservableCollection<House>(houses.houses);
+                            housesDataGrid.ItemsSource = null;
+                            housesDataGrid.ItemsSource = readyHouses;
+
+                        });
+                    }
+                    else
+                    {
+                        App.Current.Dispatcher.Invoke(() =>
+                        {
+                            readyHouses.Clear();
+                            housesDataGrid.ItemsSource = null;
+                        });
+                    }
                 }
 
                 Sensors sensors = new Sensors();
@@ -237,6 +271,37 @@ namespace SmartHouseClient
                     {
                     }
                 }
+
+                Scenarios scenarios = new Scenarios();
+
+                using (var httpClient = new HttpClient())
+                {
+                    String request = SERVER_PATH + "scenarios/" + HOUSE_ID_SCENARIOS + "/" + TOKEN;
+                    try
+                    {
+                        var json = httpClient.GetStringAsync(request).Result;
+                        scenarios = JsonConvert.DeserializeObject<Scenarios>(json.ToString());
+                    }
+                    catch (Exception e)
+                    {
+                    }
+                }
+
+                Users users = new Users();
+
+                using (var httpClient = new HttpClient())
+                {
+                    String request = SERVER_PATH + "users/" + HOUSE_ID_USERS + "/" + TOKEN;
+                    try
+                    {
+                        var json = httpClient.GetStringAsync(request).Result;
+                        users = JsonConvert.DeserializeObject<Users>(json.ToString());
+                    }
+                    catch (Exception e)
+                    {
+                    }
+                }
+
                 if (sensors.sensors != null)
                 {
                     App.Current.Dispatcher.Invoke(() =>
@@ -287,6 +352,48 @@ namespace SmartHouseClient
                     App.Current.Dispatcher.Invoke(() =>
                     {
                         readyJournals.Clear();
+                        journalGrid.ItemsSource = null;
+
+                    });
+                }
+
+                if (scenarios.scenarios != null)
+                {
+                    App.Current.Dispatcher.Invoke(() =>
+                    {
+                        readyScenarios = new ObservableCollection<Scenario>(scenarios.scenarios);
+                        scenarioDataGrid.ItemsSource = null;
+                        scenarioDataGrid.ItemsSource = readyScenarios;
+
+                    });
+                }
+                else
+                {
+                    App.Current.Dispatcher.Invoke(() =>
+                    {
+                        readyScenarios.Clear();
+                        scenarioDataGrid.ItemsSource = null;
+
+                    });
+                }
+
+                if (users.users != null)
+                {
+                    App.Current.Dispatcher.Invoke(() =>
+                    {
+                        readyUsers = new ObservableCollection<User>(users.users);
+                        usersDataGrid.ItemsSource = null;
+                        usersDataGrid.ItemsSource = readyUsers;
+
+                    });
+                }
+                else
+                {
+                    App.Current.Dispatcher.Invoke(() =>
+                    {
+                        readyScenarios.Clear();
+                        usersDataGrid.ItemsSource = null;
+
                     });
                 }
             }
@@ -363,6 +470,42 @@ namespace SmartHouseClient
                 }
             }
             catch (Exception ed) { }
+        }
+
+        private void deleteScenario_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Scenario s = scenarioDataGrid.SelectedItem as Scenario;
+                using (var httpClient = new HttpClient())
+                {
+                    String request = SERVER_PATH + "/scenarioDelete/" + s.id + "/" + TOKEN;
+                    var json = httpClient.GetStringAsync(request).Result;
+                }
+            }
+            catch (Exception ed)
+            {
+            }
+        }
+
+        private void scenarioDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void addGadgetBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddGadget addGadget = new AddGadget(HOUSE_ID_SENSORS, TOKEN);
+            addGadget.Show();
+        }
+
+        private void housesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (housesComboBox.SelectedItem != null)
+            {
+                House hUSER = housesCombo2.SelectedItem as House;
+                HOUSE_ID_USERS = hUSER.id;
+            }
         }
     }
 }

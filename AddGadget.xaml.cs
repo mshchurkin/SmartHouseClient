@@ -67,9 +67,10 @@ namespace SmartHouseClient
                             {
                                 using (var httpClient = new HttpClient())
                                 {
-                                    String request = SERVER_PATH + "/actorAdd/" + HOUSE_ID + "/" + TOKEN + "/" + nameBox.Text + "/" + TYPE + "/" + checkTxt.Text;
+                                    String request = SERVER_PATH + "actorAdd/" + HOUSE_ID + "/" + TOKEN + "/" + nameBox.Text + "/" + TYPE + "/" + checkTxt.Text;
                                     var json = httpClient.GetStringAsync(request).Result;
                                 }
+                                this.Close();
                             }
                             catch (Exception em) { }
                         }

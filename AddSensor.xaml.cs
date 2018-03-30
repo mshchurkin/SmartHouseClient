@@ -55,12 +55,16 @@ namespace SmartHouseClient
                         String TYPE = "ANALOG";
                         if (discrete.IsChecked == true)
                             TYPE = "DISCRETE";
+                        String ACTIVE = "FALSE";
+                        if (isActiveCheckBox.IsChecked == true)
+                            ACTIVE = "true";           
                         try
                         {
                             using (var httpClient = new HttpClient())
                             {
-                                String request = SERVER_PATH + "/sensorAdd/" + HOUSE_ID + "/" + TOKEN + "/" + nameBox.Text + "/" + TYPE + "/" +checkTxt.Text;
+                                String request = SERVER_PATH + "sensorAdd/" + HOUSE_ID + "/" + TOKEN + "/" + nameBox.Text + "/" + TYPE + "/" + checkTxt.Text + "/" + ACTIVE;
                                 var json = httpClient.GetStringAsync(request).Result;
+                                this.Close();
                             }
                         }
                         catch (Exception em) { }

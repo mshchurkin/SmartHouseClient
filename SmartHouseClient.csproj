@@ -99,6 +99,7 @@
       <DependentUpon>AddSensor.xaml</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
+    <Compile Include="Users.cs" />
     <Page Include="AddGadget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

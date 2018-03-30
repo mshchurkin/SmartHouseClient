@@ -27,7 +27,7 @@ namespace SmartHouseClient
         String HOUSE_ID = "";
         ObservableCollection <House> readyHouses = new ObservableCollection<House>();
 
-        public SignUpWindow(String TOKEN, String SERVER_PATH)
+        public SignUpWindow(String SERVER_PATH, String TOKEN)
         {
             this.SERVER_PATH = SERVER_PATH;
             this.TOKEN = TOKEN;
@@ -61,6 +61,7 @@ namespace SmartHouseClient
                 {
                     String request = SERVER_PATH + "userAdd/" + nameTextBox.Text + "/" + password1PassBox.Password + "/" + HOUSE_ID + "/" + TOKEN;
                     var json = httpClient.GetStringAsync(request).Result;
+                    this.Close();
                 }
             }
             catch (Exception ed) { }
