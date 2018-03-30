@@ -62,6 +62,9 @@
     <Compile Include="AddGadget.xaml.cs">
       <DependentUpon>AddGadget.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddScenarioItem.xaml.cs">
+      <DependentUpon>AddScenarioItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ControlPanel.xaml.cs">
       <DependentUpon>ControlPanel.xaml</DependentUpon>
     </Compile>
@@ -86,6 +89,7 @@
       <DependentUpon>ScenarioCreator.xaml</DependentUpon>
     </Compile>
     <Compile Include="ScenarioItem.cs" />
+    <Compile Include="ScenarioItems.cs" />
     <Compile Include="Scenarios.cs" />
     <Compile Include="Sensor.cs" />
     <Compile Include="Sensors.cs" />
@@ -101,6 +105,10 @@
     <Compile Include="User.cs" />
     <Compile Include="Users.cs" />
     <Page Include="AddGadget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddScenarioItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

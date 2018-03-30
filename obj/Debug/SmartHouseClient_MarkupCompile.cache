@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\smd\Documents\GitHub\SmartHouseClient\App.xaml
-111385092783
+12-1584654969
 
-28-1918185455
+301041991916
 141203042290
-AddGadget.xaml;ControlPanel.xaml;EditGadget.xaml;EditSensor.xaml;FirstWindow.xaml;IntegrationPanel.xaml;LoginWindow.xaml;ScenarioCreator.xaml;SignUpWindow.xaml;SubscriptionSelect.xaml;AddSensor.xaml;
+AddGadget.xaml;AddScenarioItem.xaml;ControlPanel.xaml;EditGadget.xaml;EditSensor.xaml;FirstWindow.xaml;IntegrationPanel.xaml;LoginWindow.xaml;ScenarioCreator.xaml;SignUpWindow.xaml;SubscriptionSelect.xaml;AddSensor.xaml;
 
 False
 

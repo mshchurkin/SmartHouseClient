@@ -86,3 +86,5 @@ C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.Proper
 C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.csproj.GenerateResource.Cache
 C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.exe
 C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.pdb
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\AddScenarioItem.g.cs
+C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\AddScenarioItem.baml

@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace SmartHouseClient
 {
-    class ScenarioItem
+    public class ScenarioItem
     {
+        public String sensorId { get; set; }
+
+        public String sensorValue { get; set; }
+
+        public String actorId { get; set; }
+
+        public String actorValue { get; set; }
     }
 }

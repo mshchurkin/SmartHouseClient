@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -24,9 +25,18 @@ namespace SmartHouseClient
     {
         String SERVER_PATH = "http://167.99.141.138:8080/api/";
         public string TOKEN = "";
-        public ScenarioCreator(string houseId)
+        public Scenario sc1;
+        ObservableCollection<ScenarioItem> readyItems = new ObservableCollection<ScenarioItem>();
+
+        public ScenarioCreator(Scenario sc, String TOKEN)
         {
+            this.TOKEN = TOKEN;
+            sc1 = sc;
             InitializeComponent();
+            LoadData();
+            itemsGrid.ItemsSource = readyItems;
+            TimerCheck();
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -43,41 +53,61 @@ namespace SmartHouseClient
 
         }
 
-        async void TimerCheck(bool housesNeeded)
+        async void TimerCheck()
         {
             do
             {
-                await GetData(1000, housesNeeded);
+                await GetData(5000);
 
             } while (true);
         }
 
-        Task GetData(int time, bool housesNeeded)
+        Task GetData(int time)
         {
             return Task.Run(() =>
             {
                 Thread.Sleep(time);
-                LoadData(housesNeeded);
+                LoadData();
             });
         }
 
-        private void LoadData(bool housesNeeded)
+        private void LoadData()
         {
-            //try
-            //{
-            //    if (housesNeeded)
-            //    {
-            //        Houses houses = new Houses();
-            //        using (var httpClient = new HttpClient())
-            //        {
-            //            String request = SERVER_PATH + "houses/" + TOKEN;
-            //            var json = httpClient.GetStringAsync(request).Result;
-            //            houses = JsonConvert.DeserializeObject<Houses>(json.ToString());
-            //        }
-            //        readyHouses = new ObservableCollection<House>(houses.houses);
-            //    }
+            try
+            {
 
-            //}
+                ScenarioItems scItems = new ScenarioItems();
+                using (var httpClient = new HttpClient())
+                {
+                    String request = SERVER_PATH + "scenario/" + sc1.id + "/" + TOKEN;
+                    try
+                    {
+                        var json = httpClient.GetStringAsync(request).Result;
+                        scItems = JsonConvert.DeserializeObject<ScenarioItems>(json.ToString());
+                    }
+                    catch (Exception e) { }
+                }
+                if (scItems.scenarioItems != null)
+                {
+                    App.Current.Dispatcher.Invoke(() =>
+                    {
+                        readyItems = new ObservableCollection<ScenarioItem>(scItems.scenarioItems);
+                        itemsGrid.ItemsSource = null;
+                        itemsGrid.ItemsSource = readyItems;
+
+                    });
+                }
+                else
+                {
+                    App.Current.Dispatcher.Invoke(() =>
+                    {
+                        readyItems.Clear();
+                        itemsGrid.ItemsSource = null;
+                    });
+                }
+
+            }
+            catch (Exception e) { }
         }
     }
 }

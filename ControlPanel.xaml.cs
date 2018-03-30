@@ -49,6 +49,7 @@ namespace SmartHouseClient
                 HOUSE_ID_ACTORS = user.houseId;
                 HOUSE_ID_SCENARIOS = user.houseId;
                 HOUSE_ID_JOURNALS = user.houseId;
+                HOUSE_ID_SENSORS = user.houseId;
 
                 addScenario.Visibility = Visibility.Hidden;
                 deleteScenario.Visibility = Visibility.Hidden;
@@ -100,6 +101,7 @@ namespace SmartHouseClient
                     HOUSE_ID_ACTORS = readyHouses[1].id;
                     HOUSE_ID_JOURNALS = readyHouses[1].id;
                     HOUSE_ID_USERS = readyHouses[1].id;
+                    HOUSE_ID_SCENARIOS = readyHouses[1].id;
                 }
                 housesDataGrid.ItemsSource = readyHouses;
 
@@ -147,7 +149,9 @@ namespace SmartHouseClient
 
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            EditSensor editSensor = new EditSensor(false);
+            Sensor s = sensorsGrid.SelectedItem as Sensor;
+
+            EditSensor editSensor = new EditSensor(s, TOKEN);
             editSensor.Show();
         }
 
@@ -159,7 +163,8 @@ namespace SmartHouseClient
 
         private void addScenario_Click(object sender, RoutedEventArgs e)
         {
-            ScenarioCreator scenarioCreator = new ScenarioCreator("");
+            ScenarioCreator scenarioCreator = new ScenarioCreator(null, TOKEN);
+            scenarioCreator.Show();
         }
 
         private void delSensor_Click(object sender, RoutedEventArgs e)
@@ -487,12 +492,6 @@ namespace SmartHouseClient
             {
             }
         }
-
-        private void scenarioDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void addGadgetBtn_Click(object sender, RoutedEventArgs e)
         {
             AddGadget addGadget = new AddGadget(HOUSE_ID_SENSORS, TOKEN);
@@ -506,6 +505,14 @@ namespace SmartHouseClient
                 House hUSER = housesCombo2.SelectedItem as House;
                 HOUSE_ID_USERS = hUSER.id;
             }
+        }
+
+        private void scenarioDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Scenario s = scenarioDataGrid.SelectedItem as Scenario;
+
+            ScenarioCreator sc = new ScenarioCreator(s, TOKEN);
+            sc.Show();
         }
     }
 }

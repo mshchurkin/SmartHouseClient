@@ -71,7 +71,7 @@
 
                 <Grid Visibility="{Binding Path=Visibility, ElementName=scenarioTab}" Background="#FFE5E5E5">
 
-                    <DataGrid x:Name="scenarioDataGrid" Margin="10,41,10,30" SelectionChanged="scenarioDataGrid_SelectionChanged" IsReadOnly="True"/>
+                    <DataGrid x:Name="scenarioDataGrid" Margin="10,41,10,30" IsReadOnly="True" MouseDoubleClick="scenarioDataGrid_MouseDoubleClick"/>
                     <Label Content="Выберите дом:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                     <ComboBox x:Name="houseComboScen" HorizontalAlignment="Left" Margin="162.915,14,0,0" VerticalAlignment="Top" Width="161"/>
                     <Button x:Name="addScenario" Content="Добавить сценарий" Margin="0,0,298,5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="143" Click="addScenario_Click"/>

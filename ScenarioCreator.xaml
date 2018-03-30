@@ -8,7 +8,7 @@
         Title="Создание сценария" Height="500" Width="400">
     <Grid Background="#FFE5E5E5">
         <Label HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">Элементы сценария</Label>
-        <DataGrid x:Name="sensorsGrid" Margin="10,51,10,55" Grid.ColumnSpan="3" />
+        <DataGrid x:Name="itemsGrid" Margin="10,51,10,55" Grid.ColumnSpan="3" IsReadOnly="True" />
         <Button x:Name="addElem" Content="Добавить элемент сценария" Margin="10,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="Auto" Click="addElem_Click" Grid.ColumnSpan="2"/>
         <Button x:Name="delElem" Content="Удалить элемент сценария" Margin="0,0,10,5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="Auto" Click="delElem_Click" Grid.Column="2"/>
     </Grid>

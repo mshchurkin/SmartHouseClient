@@ -21,5 +21,7 @@ namespace SmartHouseClient
         public int value { get; set; }
 
         public String sensorType { get; set; }
+
+        public String extreme { get; set; }
     }
 }

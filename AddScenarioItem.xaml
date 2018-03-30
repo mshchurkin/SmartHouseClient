@@ -1,0 +1,21 @@
+﻿<Window x:Class="SmartHouseClient.AddScenarioItem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmartHouseClient"
+        mc:Ignorable="d"
+        Title="Добавить элемент сценария" Height="307.277" Width="300">
+    <Grid>
+        <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="15,10,0,0" Content="Наименование датчика"/>
+        <ComboBox x:Name="sensorBox" Height="30" Width="200"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,40,0,0"/>
+        <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="15,80,0,0" Content="Условное значение"/>
+        <TextBox x:Name="checkTxt" Height="30" Width="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="165,80,0,0"/>
+        <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="15,120,0,0" Content="Наименование датчика"/>
+        <ComboBox x:Name="gadgetBox" Height="30" Width="200"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,150,0,0"/>
+        <Button Height="30" Width="150" VerticalAlignment="Bottom" Margin="71,0,71,15" Click="Button_Click" Content="Добавить условие"/>
+        <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="15,180,0,0" Content="Задаваемое значение"/>
+        <TextBox x:Name="setTxt" Height="30" Width="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="165,182,0,0"/>
+
+    </Grid>
+</Window>

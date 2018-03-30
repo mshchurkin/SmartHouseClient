@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,10 +20,15 @@ namespace SmartHouseClient
     /// </summary>
     public partial class EditSensor : Window
     {
+        string TOKEN = "";
+        string SERVER_PATH = "";
         bool isDiscrete = false;
-        public EditSensor(bool isDiscrete)
+        Sensor sk;
+        public EditSensor(Sensor s , String TOKEN)
         {
-            this.isDiscrete = isDiscrete;
+            sk = s;
+            isActiveCheckBox.IsChecked = s.active;
+            checkTxt.Text = s.extreme;
             InitializeComponent();
         }
 
@@ -48,7 +54,19 @@ namespace SmartHouseClient
                     }
                     else
                     {
-                        ///TODO добавление
+                        String ACTIVE = "FALSE";
+                        if (isActiveCheckBox.IsChecked == true)
+                            ACTIVE = "true";
+                        try
+                        {
+                            using (var httpClient = new HttpClient())
+                            {
+                                String request = SERVER_PATH + "sensorEdit/" + sk.houseId + "/" + TOKEN + "/" + ACTIVE + "/" + checkTxt.Text;
+                                var json = httpClient.GetStringAsync(request).Result;
+                                this.Close();
+                            }
+                        }
+                        catch (Exception em) { }
                     }
                 }
             }
