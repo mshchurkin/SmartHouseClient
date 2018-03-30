@@ -55,7 +55,6 @@ C:\Users\smd\Documents\GitHub\SmartHouseClient\bin\Debug\SmartHouseClient.exe
 C:\Users\smd\Documents\GitHub\SmartHouseClient\bin\Debug\SmartHouseClient.pdb
 C:\Users\smd\Documents\GitHub\SmartHouseClient\bin\Debug\Newtonsoft.Json.dll
 C:\Users\smd\Documents\GitHub\SmartHouseClient\bin\Debug\Newtonsoft.Json.xml
-C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.csprojResolveAssemblyReference.cache
 C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\AddGadget.g.cs
 C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\ControlPanel.g.cs
 C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\EditGadget.g.cs

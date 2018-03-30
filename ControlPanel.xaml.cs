@@ -116,6 +116,7 @@ namespace SmartHouseClient
             usersDataGrid.ItemsSource = readyUsers;
 
             TimerCheck(user.isIntegrator);
+            TimerCheck2();
         }
 
 
@@ -176,6 +177,23 @@ namespace SmartHouseClient
                 var json = httpClient.GetStringAsync(request).Result;
             }
         }
+        async void TimerCheck2()
+        {
+            do
+            {
+                await GetData2(30000);
+
+            } while (true);
+        }
+
+        Task GetData2(int time)
+        {
+            return Task.Run(() =>
+            {
+                Thread.Sleep(time);
+                CheckDanger();
+            });
+        }
 
         async void TimerCheck(bool housesNeeded)
         {
@@ -192,9 +210,29 @@ namespace SmartHouseClient
             {
                 Thread.Sleep(time);
                 LoadData(housesNeeded);
+                CheckDanger();
             });
         }
 
+        private void CheckDanger()
+        {
+            using (var httpClient = new HttpClient())
+            {
+                Extremes extremes = new Extremes();
+                String request = SERVER_PATH + "extremeList/" +HOUSE_ID_SENSORS+"/"+ TOKEN;
+                try
+                {
+                    var json = httpClient.GetStringAsync(request).Result;
+                    extremes = JsonConvert.DeserializeObject<Extremes>(json.ToString());
+                }
+                catch (Exception edv) { }
+                List<Extreme> exCheck = extremes.extremes;
+                foreach(Extreme e in exCheck)
+                {
+                    MessageBox.Show("Нешататная ситуация ID дома: " + e.houseId + ", ID датчика: " + e.sensorId + ", значение: " + e.value);
+                }
+            }
+        }
         private void LoadData(bool housesNeeded)
         {
             try

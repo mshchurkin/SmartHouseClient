@@ -74,6 +74,8 @@
     <Compile Include="EditSensor.xaml.cs">
       <DependentUpon>EditSensor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extreme.cs" />
+    <Compile Include="Extremes.cs" />
     <Compile Include="FirstWindow.xaml.cs">
       <DependentUpon>FirstWindow.xaml</DependentUpon>
     </Compile>
