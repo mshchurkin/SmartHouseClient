@@ -5,12 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartHouseClient"
         mc:Ignorable="d"
-        Title="AddGadget" Height="267.021" Width="300">
+        Title="Добавить механизм" Height="267.021" Width="300">
     <Grid>
         <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="15,10,0,0">Наименование</Label>
         <TextBox x:Name="nameBox" Height="30" Width="200"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,40,0,0"></TextBox>
-        <Label FontSize="14" VerticalAlignment="Top" Margin="10,70,0,0">Включен:</Label>
-        <CheckBox x:Name="isActiveCheckBox" VerticalAlignment="Top" Margin="100,79,0,0"></CheckBox>
         <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="10,100,0,0">Значение</Label>
         <TextBox x:Name="checkTxt" Height="30" Width="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,100,0,0"></TextBox>
         <RadioButton x:Name="discrete" Height="40" Margin="20,0,0,50" VerticalAlignment="Bottom">Дискретный</RadioButton>

@@ -59,7 +59,7 @@
                             <Label Content="Адрес дома:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                             <TextBox x:Name="houseAddressTextBox" HorizontalAlignment="Left" Height="23" Margin="0,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="184"/>
                             <Button x:Name="addHouseBtn" Content="Добавить" HorizontalAlignment="Left" Margin="109,54,0,0" VerticalAlignment="Top" Width="75" Click="addHouseBtn_Click"/>
-                            <Button x:Name="delHouseBtn" Content="Удалить выбранный дом" HorizontalAlignment="Left" Margin="276,54,-215,0" VerticalAlignment="Top" Width="145" Click="addHouseBtn_Click"/>
+                            <Button x:Name="delHouseBtn" Content="Удалить выбранный дом" HorizontalAlignment="Left" Margin="276,54,-215,0" VerticalAlignment="Top" Width="145" Click="delHouseBtn_Click"/>
 
                         </Grid>
 
@@ -71,7 +71,7 @@
 
                 <Grid Visibility="{Binding Path=Visibility, ElementName=scenarioTab}" Background="#FFE5E5E5">
 
-                    <DataGrid Margin="10,41,10,30"/>
+                    <DataGrid x:Name="scenarioDataGrid" Margin="10,41,10,30"/>
                     <Label Content="Выберите дом:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                     <ComboBox x:Name="houseComboScen" HorizontalAlignment="Left" Margin="162.915,14,0,0" VerticalAlignment="Top" Width="161"/>
                     <Button x:Name="addScenario" Content="Добавить сценарий" Margin="0,0,298,5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="143" Click="addScenario_Click"/>
@@ -86,7 +86,7 @@
                     </Grid.ColumnDefinitions>
                     <Label Content="Выберите дом:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                     <ComboBox x:Name="housesCombo2" HorizontalAlignment="Left" Margin="55,10,0,0" VerticalAlignment="Top" Width="161" Grid.Column="1" SelectionChanged="housesCombo2_SelectionChanged"/>
-                    <DataGrid x:Name="journalGrid" Margin="10,51,10,35" Grid.ColumnSpan="3" MouseDoubleClick="DataGrid_MouseDoubleClick"/>
+                    <DataGrid x:Name="journalGrid" Margin="10,51,10,35" Grid.ColumnSpan="3"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="settingsTab" Header="Настройки">

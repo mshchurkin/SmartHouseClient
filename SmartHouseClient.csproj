@@ -81,9 +81,12 @@
     </Compile>
     <Compile Include="Event.cs" />
     <Compile Include="Events.cs" />
+    <Compile Include="Scenario.cs" />
     <Compile Include="ScenarioCreator.xaml.cs">
       <DependentUpon>ScenarioCreator.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ScenarioItem.cs" />
+    <Compile Include="Scenarios.cs" />
     <Compile Include="Sensor.cs" />
     <Compile Include="Sensors.cs" />
     <Compile Include="SignUpWindow.xaml.cs">

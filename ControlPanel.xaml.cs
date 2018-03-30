@@ -34,7 +34,7 @@ namespace SmartHouseClient
         ObservableCollection<Sensor> readySensors = new ObservableCollection<Sensor>();
         ObservableCollection<Actor> readyActors = new ObservableCollection<Actor>();
         ObservableCollection<Event> readyJournals = new ObservableCollection<Event>();
-
+        ObservableCollection<Scenario> readyScenarios = new ObservableCollection<Scenario>();  
 
         public ControlPanel(User user)
         {
@@ -98,6 +98,8 @@ namespace SmartHouseClient
 
             sensorsGrid.ItemsSource = readySensors;
             actorsGrid.ItemsSource = readyActors;
+            journalGrid.ItemsSource = readyJournals;
+            scenarioDataGrid.ItemsSource = readyScenarios;
 
             TimerCheck(user.isIntegrator);
         }
@@ -113,13 +115,21 @@ namespace SmartHouseClient
 
         private void addSensorBtn_Click(object sender, RoutedEventArgs e)
         {
-            AddSensor addSensor = new AddSensor("");
+            AddSensor addSensor = new AddSensor(HOUSE_ID_SENSORS, TOKEN);
             addSensor.Show();
         }
 
         private void addHouseBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    String request = SERVER_PATH + "/houseAdd/" + houseAddressTextBox.Text + "/" + TOKEN;
+                    var json = httpClient.GetStringAsync(request).Result;
+                }
+            }
+            catch (Exception em) { }
         }
 
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -130,7 +140,7 @@ namespace SmartHouseClient
 
         private void addUserBtn_Click(object sender, RoutedEventArgs e)
         {
-            SignUpWindow signUpWindow = new SignUpWindow(SERVER_PATH,TOKEN);
+            SignUpWindow signUpWindow = new SignUpWindow(SERVER_PATH, TOKEN);
         }
 
         private void addScenario_Click(object sender, RoutedEventArgs e)
@@ -143,23 +153,24 @@ namespace SmartHouseClient
             Sensor s = sensorsGrid.SelectedItem as Sensor;
             using (var httpClient = new HttpClient())
             {
-                String request = SERVER_PATH + "/sensorDelete/"+s.id+"/" + TOKEN;
+                String request = SERVER_PATH + "/sensorDelete/" + s.id + "/" + TOKEN;
                 var json = httpClient.GetStringAsync(request).Result;
             }
         }
 
-        async void TimerCheck( bool housesNeeded)
+        async void TimerCheck(bool housesNeeded)
         {
             do
             {
                 await GetData(1000, housesNeeded);
-                
+
             } while (true);
         }
 
         Task GetData(int time, bool housesNeeded)
         {
-            return Task.Run(() => {
+            return Task.Run(() =>
+            {
                 Thread.Sleep(time);
                 LoadData(housesNeeded);
             });
@@ -182,50 +193,135 @@ namespace SmartHouseClient
                 }
 
                 Sensors sensors = new Sensors();
-                
+
                 using (var httpClient = new HttpClient())
                 {
                     String request = SERVER_PATH + "sensors/" + HOUSE_ID_SENSORS + "/" + TOKEN;
-                    var json = httpClient.GetStringAsync(request).Result;
-                    sensors = JsonConvert.DeserializeObject<Sensors>(json.ToString());
+                    try
+                    {
+                        var json = httpClient.GetStringAsync(request).Result;
+                        sensors = JsonConvert.DeserializeObject<Sensors>(json.ToString());
+                    }
+                    catch (Exception e)
+                    {
+                    }
                 }
-                readySensors = new ObservableCollection<Sensor>(sensors.sensors);
-                sensorsGrid.Items.Refresh();
 
 
                 Actors actors = new Actors();
-              
+
                 using (var httpClient = new HttpClient())
                 {
                     String request = SERVER_PATH + "actors/" + HOUSE_ID_ACTORS + "/" + TOKEN;
-                    var json = httpClient.GetStringAsync(request).Result;
-                    actors = JsonConvert.DeserializeObject<Actors>(json.ToString());
+                    try
+                    {
+                        var json = httpClient.GetStringAsync(request).Result;
+                        actors = JsonConvert.DeserializeObject<Actors>(json.ToString());
+                    }
+                    catch (Exception e)
+                    {
+                    }
                 }
-                readyActors = new ObservableCollection<Actor>(actors.actors);
-                actorsGrid.Items.Refresh();
 
                 Events events = new Events();
 
                 using (var httpClient = new HttpClient())
                 {
                     String request = SERVER_PATH + "historyList/" + HOUSE_ID_JOURNALS + "/" + TOKEN;
-                    var json = httpClient.GetStringAsync(request).Result;
-                    events = JsonConvert.DeserializeObject<Events>(json.ToString());
+                    try
+                    {
+                        var json = httpClient.GetStringAsync(request).Result;
+                        events = JsonConvert.DeserializeObject<Events>(json.ToString());
+                    }
+                    catch (Exception e)
+                    {
+                    }
                 }
-                readyJournals = new ObservableCollection<Event>(events.events);
-                journalGrid.Items.Refresh();
+                if (sensors.sensors != null)
+                {
+                    App.Current.Dispatcher.Invoke(() =>
+                    {
+                        readySensors = new ObservableCollection<Sensor>(sensors.sensors);
+                        sensorsGrid.ItemsSource = null;
+                        sensorsGrid.ItemsSource = readySensors;
+
+                    });
+                }
+                else
+                {
+                    App.Current.Dispatcher.Invoke(() =>
+                    {
+                        readySensors.Clear();
+                        sensorsGrid.ItemsSource = null;
+                    });
+                }
+                if (actors.actors != null)
+                {
+                    App.Current.Dispatcher.Invoke(() =>
+                    {
+                        readyActors = new ObservableCollection<Actor>(actors.actors);
+                        actorsGrid.ItemsSource = null;
+                        actorsGrid.ItemsSource = readyActors;
+                    });
+                }
+                else
+                {
+                    App.Current.Dispatcher.Invoke(() =>
+                    {
+                        readyActors.Clear();
+                        actorsGrid.ItemsSource = null;
+                    });
+                }
+                if (events.events != null)
+                {
+                    App.Current.Dispatcher.Invoke(() =>
+                    {
+                        readyJournals = new ObservableCollection<Event>(events.events);
+                        journalGrid.ItemsSource = null;
+                        journalGrid.ItemsSource = readyJournals;
+
+                    });
+                }
+                else
+                {
+                    App.Current.Dispatcher.Invoke(() =>
+                    {
+                        readyJournals.Clear();
+                    });
+                }
             }
             catch (Exception e) { }
-}
+        }
 
         private void deleteGadgetBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                Actor a = actorsGrid.SelectedItem as Actor;
+                using (var httpClient = new HttpClient())
+                {
+                    String request = SERVER_PATH + "/actorDelete/" + a.id + "/" + TOKEN;
+                    var json = httpClient.GetStringAsync(request).Result;
+                }
+            }
+            catch (Exception ed)
+            {
+            }
         }
-
         private void delUser_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                User u = usersDataGrid.SelectedItem as User;
+                using (var httpClient = new HttpClient())
+                {
+                    String request = SERVER_PATH + "/userDelete/" + u.login + "/" + TOKEN;
+                    var json = httpClient.GetStringAsync(request).Result;
+                }
+            }
+            catch (Exception ed)
+            {
+            }
         }
 
         private void housesACT_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -253,6 +349,20 @@ namespace SmartHouseClient
                 House hEVENT = housesCombo2.SelectedItem as House;
                 HOUSE_ID_SENSORS = hEVENT.id;
             }
+        }
+
+        private void delHouseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                House h = housesDataGrid.SelectedItem as House;
+                using (var httpClient = new HttpClient())
+                {
+                    String request = SERVER_PATH + "/houseDelete/" + h.id + "/" + TOKEN;
+                    var json = httpClient.GetStringAsync(request).Result;
+                }
+            }
+            catch (Exception ed) { }
         }
     }
 }

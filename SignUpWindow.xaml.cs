@@ -53,14 +53,17 @@ namespace SmartHouseClient
 
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)
         {
-            House h = houseComboBox.SelectedItem as House;
-            HOUSE_ID = h.id;
-            using (var httpClient = new HttpClient())
+            try
             {
-                String request = SERVER_PATH + "userAdd/"+nameTextBox.Text+"/"+password1PassBox.Password+"/"+HOUSE_ID+"/"+TOKEN;
-;
-                var json = httpClient.GetStringAsync(request).Result;
+                House h = houseComboBox.SelectedItem as House;
+                HOUSE_ID = h.id;
+                using (var httpClient = new HttpClient())
+                {
+                    String request = SERVER_PATH + "userAdd/" + nameTextBox.Text + "/" + password1PassBox.Password + "/" + HOUSE_ID + "/" + TOKEN;
+                    var json = httpClient.GetStringAsync(request).Result;
+                }
             }
+            catch (Exception ed) { }
         }
     }
 }
