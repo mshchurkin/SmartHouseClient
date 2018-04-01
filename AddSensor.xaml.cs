@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -20,12 +21,13 @@ namespace SmartHouseClient
     /// </summary>
     public partial class AddSensor : Window
     {
-        String SERVER_PATH = "http://167.99.141.138:8080/api/";
+        public string SERVER_PATH = "";
         public string TOKEN = "";
         public string HOUSE_ID = "";
-        public AddSensor(string HOUSE_ID, string TOKEN)
+        public AddSensor(string HOUSE_ID, string TOKEN, string SERVER_PATH)
         {
             InitializeComponent();
+            this.SERVER_PATH = SERVER_PATH;
             this.TOKEN = TOKEN;
             this.HOUSE_ID = HOUSE_ID;
         }
@@ -35,39 +37,58 @@ namespace SmartHouseClient
             int k = 0;
             if (Int32.TryParse(checkTxt.Text, out k) == false)
             {
-                MessageBox.Show("Неверный ввод порога значения. Доступные значения от 0 до 1024 для аналоговых датчиков и занчения 0/1 для дискретных");
+                MessageBox.Show("Неверный ввод порога значения. ");
             }
             else
             {
-                if ((k < 0)||(k>1024))
-                {
-                    MessageBox.Show("Неверный ввод порога значения. Доступные значения от 0 до 1024 для аналоговых датчиков и занчения 0/1 для дискретных");
 
+                if ((discrete.IsChecked == true) && (k > 1))
+                {
+                    MessageBox.Show("Неверный ввод порога значения. ");
                 }
                 else
                 {
-                    if ((discrete.IsChecked == true) && (k > 1))
+                    if (Int32.TryParse(upTxt.Text, out k) == false)
                     {
-                        MessageBox.Show("Неверный ввод порога значения. Доступные значения от 0 до 1024 для аналоговых датчиков и занчения 0/1 для дискретных");
+                        MessageBox.Show("Неверный ввод верхнего порога значения. ");
                     }
                     else
                     {
-                        String TYPE = "ANALOG";
-                        if (discrete.IsChecked == true)
-                            TYPE = "DISCRETE";
-                        String ACTIVE = "FALSE";
-                        if (isActiveCheckBox.IsChecked == true)
-                            ACTIVE = "true";           
-                        try
+                        if (Int32.TryParse(downTxt.Text, out k) == false)
                         {
-                            using (var httpClient = new HttpClient())
+                            MessageBox.Show("Неверный ввод нижнего порога значения. ");
+                        }
+                        else
+                        {
+                            if (Int32.Parse(downTxt.Text) >= Int32.Parse(upTxt.Text))
                             {
-                                String request = SERVER_PATH + "sensorAdd/" + HOUSE_ID + "/" + TOKEN + "/" + nameBox.Text + "/" + TYPE + "/" + checkTxt.Text + "/" + ACTIVE;
-                                var json = httpClient.GetStringAsync(request).Result;
-                                this.Close();
+                                MessageBox.Show("Верхний порог меньше нижнего ");
+                            }
+                            else
+                            {
+                                Sensor s = new Sensor();
+                                String TYPE = "ANALOG";
+                                if (discrete.IsChecked == true)
+                                    TYPE = "DISCRETE";
+                                String ACTIVE = "FALSE";
+                                try
+                                {
+                                    using (var httpClient = new HttpClient())
+                                    {
+                                        String request = SERVER_PATH + "sensorAdd/" + HOUSE_ID + "/" + TOKEN + "/" + nameBox.Text + "/" + TYPE + "/" + checkTxt.Text;
+                                        var json = httpClient.GetStringAsync(request).Result;
+                                        s = JsonConvert.DeserializeObject<Sensor>(json.ToString());
+                                        s.MinValue = Int32.Parse(downTxt.Text);
+                                        s.MaxValue = Int32.Parse(upTxt.Text);
+                                        s.Start(SERVER_PATH, TOKEN);
+                                        SensorsStore.sensors.Add(s);
+                                        this.Close();
+                                    }
+                                }
+
+                                catch (Exception em) { }
                             }
                         }
-                        catch (Exception em) { }
                     }
                 }
             }

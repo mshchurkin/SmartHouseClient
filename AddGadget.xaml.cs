@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -20,15 +21,16 @@ namespace SmartHouseClient
     /// </summary>
     public partial class AddGadget : Window
     {
-        String SERVER_PATH = "http://167.99.141.138:8080/api/";
+        String SERVER_PATH = "";
         public string TOKEN = "";
         public string HOUSE_ID = "";
 
-        public AddGadget(string HOUSE_ID, string TOKEN)
+        public AddGadget(string HOUSE_ID, string TOKEN, string SERVER_PATH)
         {
             InitializeComponent();
 
             this.TOKEN = TOKEN;
+            this.SERVER_PATH = SERVER_PATH;
             this.HOUSE_ID = HOUSE_ID;
         }
 
@@ -60,6 +62,8 @@ namespace SmartHouseClient
                         }
                         else
                         {
+                            Actor a = new Actor();
+
                             String TYPE = "ANALOG";
                             if (discrete.IsChecked == true)
                                 TYPE = "DISCRETE";
@@ -69,6 +73,9 @@ namespace SmartHouseClient
                                 {
                                     String request = SERVER_PATH + "actorAdd/" + HOUSE_ID + "/" + TOKEN + "/" + nameBox.Text + "/" + TYPE + "/" + checkTxt.Text;
                                     var json = httpClient.GetStringAsync(request).Result;
+                                    a = JsonConvert.DeserializeObject<Actor>(json.ToString());
+                                    a.Start(SERVER_PATH,TOKEN);
+                                    SensorsStore.actors.Add(a);
                                 }
                                 this.Close();
                             }

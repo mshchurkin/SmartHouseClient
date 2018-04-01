@@ -5,10 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartHouseClient"
         mc:Ignorable="d"
-        Title="Панель контроля" Height="391" Width="465" MinWidth="465" MinHeight="300">
+        Title="Панель контроля" Height="420" Width="600" >
     <Grid>
-        <TabControl  x:Name="UsersTab">
-            <TabItem x:Name="usersTab" Header="Жильцы">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="509*"/>
+            <ColumnDefinition Width="83*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl  x:Name="UsersTab" Grid.ColumnSpan="2" Height="350">
+            <TabItem x:Name="usersTab" Header="Пользователи">
                 <Grid Background="#FFE5E5E5" Visibility="{Binding Path=Visibility, ElementName=usersTab}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="9*"/>
@@ -16,10 +20,10 @@
                         <ColumnDefinition Width="277*"/>
                         <ColumnDefinition Width="21*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Выберите дом:" HorizontalAlignment="Left" Margin="1,10,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <ComboBox x:Name="housesComboBox" HorizontalAlignment="Left" Margin="98,10,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.ColumnSpan="2" SelectionChanged="housesComboBox_SelectionChanged"/>
+                    <Label x:Name="l1"  Content="Выберите здание:" HorizontalAlignment="Left" Margin="1,10,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <ComboBox x:Name="housesComboBox" HorizontalAlignment="Left" Margin="120,10,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.ColumnSpan="2" SelectionChanged="housesComboBox_SelectionChanged" DropDownClosed="housesComboBox_DropDownClosed"/>
                     <DataGrid x:Name="usersDataGrid" Margin="1,41,10,42" Grid.Column="1" Grid.ColumnSpan="3" IsReadOnly="True"/>
-                    <Button x:Name="addUserBtn" Content="Добавить пользователя" Margin="0,0,268,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="143" Grid.Column="1" Click="addUserBtn_Click" Grid.ColumnSpan="2"/>
+                    <Button x:Name="addUserBtn" Content="Добавить пользователя" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="143" Grid.Column="1" Click="addUserBtn_Click" Grid.ColumnSpan="2"/>
                     <Button x:Name="delUser" Content="Удалить пользователя" Margin="0,0,10,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="143" Grid.Column="2" Click="delUser_Click" Grid.ColumnSpan="2"/>
                 </Grid>
             </TabItem>
@@ -30,10 +34,10 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Выберите дом:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="housesCombo" HorizontalAlignment="Left" Margin="47.915,14,0,0" VerticalAlignment="Top" Width="161" Grid.ColumnSpan="2" Grid.Column="1" SelectionChanged="housesCombo_SelectionChanged"/>
+                    <Label x:Name="l5" Content="Выберите здание:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="housesCombo" HorizontalAlignment="Left" Margin="15,13,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.ColumnSpan="2" SelectionChanged="housesComboBox_SelectionChanged" DropDownClosed="housesCombo_DropDownClosed"/>
                     <DataGrid x:Name="sensorsGrid" Margin="10,51,10,35" Grid.ColumnSpan="3" MouseDoubleClick="DataGrid_MouseDoubleClick" IsReadOnly="True"/>
-                    <Button x:Name="addSensorBtn" Content="Добавить датчик" Margin="0,0,18,5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="143" Click="addSensorBtn_Click" Grid.ColumnSpan="2"/>
+                    <Button x:Name="addSensorBtn" Content="Добавить датчик" Margin="10,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="143" Click="addSensorBtn_Click" Grid.ColumnSpan="2"/>
                     <Button x:Name="delSensor" Content="Удалить датчик" Margin="0,0,10,5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="143" Click="delSensor_Click" Grid.Column="2"/>
                 </Grid>
             </TabItem>
@@ -44,22 +48,22 @@
                         <ColumnDefinition Width="54*"/>
                         <ColumnDefinition Width="271*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Выберите дом:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="housesACT" HorizontalAlignment="Left" Margin="47.915,14,0,0" VerticalAlignment="Top" Width="161" Grid.ColumnSpan="2" Grid.Column="1" SelectionChanged="housesACT_SelectionChanged"/>
+                    <Label x:Name="l2" Content="Выберите здание:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="housesACT" HorizontalAlignment="Left" Margin="-20,13,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.ColumnSpan="2" SelectionChanged="housesComboBox_SelectionChanged" DropDownClosed="housesACT_DropDownClosed"/>
                     <DataGrid x:Name="actorsGrid" Margin="10,51,10,35" Grid.ColumnSpan="3" IsReadOnly="True"/>
-                    <Button x:Name="addGadgetBtn" Content="Добавить механизм" Margin="0,0,18,5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="143" Grid.ColumnSpan="2" Click="addGadgetBtn_Click"/>
+                    <Button x:Name="addGadgetBtn" Content="Добавить механизм" Margin="10,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="143" Grid.ColumnSpan="2" Click="addGadgetBtn_Click"/>
                     <Button x:Name="deleteGadgetBtn" Content="Удалить механизм" Margin="0,0,10,5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="143" Grid.Column="2" Click="deleteGadgetBtn_Click"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="housesTab" Header="Дома">
+            <TabItem x:Name="housesTab" Header="Здания">
                 <Grid Background="#FFE5E5E5" Visibility="{Binding Path=Visibility, ElementName=housesTab}">
-                    <Expander x:Name="addHouse" Header="Добавление и удаление домов" HorizontalAlignment="Left" Height="105" VerticalAlignment="Top" Width="208" Margin="10,193,0,0">
+                    <Expander x:Name="addHouse" Header="Добавление и удаление зданий" HorizontalAlignment="Left" Height="105" VerticalAlignment="Top" Width="208" Margin="10,205,0,0">
                         <Grid Background="#FFE5E5E5">
 
-                            <Label Content="Адрес дома:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            <Label Content="Имя здания:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                             <TextBox x:Name="houseAddressTextBox" HorizontalAlignment="Left" Height="23" Margin="0,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="184"/>
-                            <Button x:Name="addHouseBtn" Content="Добавить" HorizontalAlignment="Left" Margin="109,54,0,0" VerticalAlignment="Top" Width="75" Click="addHouseBtn_Click"/>
-                            <Button x:Name="delHouseBtn" Content="Удалить выбранный дом" HorizontalAlignment="Left" Margin="276,54,-215,0" VerticalAlignment="Top" Width="145" Click="delHouseBtn_Click"/>
+                            <Button x:Name="addHouseBtn" Content="Добавить" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top" Width="75" Click="addHouseBtn_Click"/>
+                            <Button x:Name="delHouseBtn" Content="Удалить выбранное здание" HorizontalAlignment="Left" Margin="276,54,-230,0" VerticalAlignment="Top" Width="160" Click="delHouseBtn_Click"/>
 
                         </Grid>
 
@@ -72,9 +76,9 @@
                 <Grid Visibility="{Binding Path=Visibility, ElementName=scenarioTab}" Background="#FFE5E5E5">
 
                     <DataGrid x:Name="scenarioDataGrid" Margin="10,41,10,30" IsReadOnly="True" MouseDoubleClick="scenarioDataGrid_MouseDoubleClick"/>
-                    <Label Content="Выберите дом:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="houseComboScen" HorizontalAlignment="Left" Margin="162.915,14,0,0" VerticalAlignment="Top" Width="161"/>
-                    <Button x:Name="addScenario" Content="Добавить сценарий" Margin="0,0,298,5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="143" Click="addScenario_Click"/>
+                    <Label x:Name="l3" Content="Выберите здание:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="housesComboScen" HorizontalAlignment="Left" Margin="120,13,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.ColumnSpan="2" SelectionChanged="housesComboBox_SelectionChanged" DropDownClosed="housesComboScen_DropDownClosed"/>
+                    <Button x:Name="addScenario" Content="Добавить сценарий" Margin="10,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="143" Click="addScenario_Click"/>
                     <Button x:Name="deleteScenario" Content="Удалить сценарий" Margin="0,0,10,5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="143" Click="deleteScenario_Click"/>
                 </Grid>
             </TabItem>
@@ -84,25 +88,23 @@
                         <ColumnDefinition Width="81*"/>
                         <ColumnDefinition Width="370*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Выберите дом:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                    <ComboBox x:Name="housesCombo2" HorizontalAlignment="Left" Margin="55,10,0,0" VerticalAlignment="Top" Width="161" Grid.Column="1" SelectionChanged="housesCombo2_SelectionChanged"/>
+                    <Label x:Name="l4" Content="Выберите здание:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <ComboBox x:Name="housesCombo2" HorizontalAlignment="Left" Margin="15,13,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.ColumnSpan="2" SelectionChanged="housesComboBox_SelectionChanged" DropDownClosed="housesCombo2_DropDownClosed"/>
                     <DataGrid x:Name="journalGrid" Margin="10,51,10,35" Grid.ColumnSpan="3" IsReadOnly="True"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="settingsTab" Header="Настройки">
                 <Grid Background="#FFE5E5E5">
-                    <Label Content="Фамилия" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Имя" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Отчество" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Тариф" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Константинов" HorizontalAlignment="Left" Margin="121,10,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Константин" HorizontalAlignment="Left" Margin="121,36,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Константинович" HorizontalAlignment="Left" Margin="121,62,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Базовый" HorizontalAlignment="Left" Margin="121,88,0,0" VerticalAlignment="Top"/>
-                    <Button Content="Сменить тариф" HorizontalAlignment="Left" Margin="235,91,0,0" VerticalAlignment="Top" Width="98" Click="Button_Click"/>
+                    <Label Content="Логин" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <Label Content="user" HorizontalAlignment="Left" Margin="60,10,0,0" VerticalAlignment="Top"/>
+
+                    <Label Content="Тариф" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="surname" HorizontalAlignment="Left" Margin="121,10,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="Plan" Content="Базовый"  HorizontalAlignment="Left" Margin="60,40,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Сменить тариф" HorizontalAlignment="Left" Margin="120,44,0,0" VerticalAlignment="Top" Width="98" Click="Button_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>
-
+        <Label VerticalAlignment="Bottom" HorizontalAlignment="Center" x:Name="lError" Foreground="Red" Width="592" Height="22" Background="#FFE5E5E5" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
     </Grid>
 </Window>

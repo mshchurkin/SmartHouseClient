@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartHouseClient"
         mc:Ignorable="d"
-        Title="Изменение параметров датчика" Height="181.915" Width="300">
+        Title="Изменение параметров датчика" Height="203.192" Width="303.191">
     <Grid>
-        <Label FontSize="14" VerticalAlignment="Top" Margin="10,10,0,0">Включен:
-        </Label>
-        <CheckBox x:Name="isActiveCheckBox" VerticalAlignment="Top" Margin="100,20,0,0"></CheckBox>
-        <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="15,40,0,0">Порог нештатной ситуации</Label>
-        <TextBox x:Name="checkTxt" Height="30" Width="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,70,0,0"></TextBox>
+        <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="15,20,0,0">Порог нештатной ситуации</Label>
+        <TextBox x:Name="checkTxt" Height="30" Width="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,20,0,0"></TextBox>
         <Button Height="30" Width="170" VerticalAlignment="Bottom" Margin="10" Click="Button_Click">Изменить параметры датчика</Button>
-
+        <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="10,90,0,0" Content="Верхний порог"/>
+        <TextBox x:Name="upTxt" Height="30" Width="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,90,0,0"/>
+        <TextBox x:Name="downTxt" Height="30" Width="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,50,0,0"/>
+        <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="10,50,0,0">Нижний порог</Label>
     </Grid>
 </Window>

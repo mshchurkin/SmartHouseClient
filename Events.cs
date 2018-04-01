@@ -8,6 +8,6 @@ namespace SmartHouseClient
 {
     public class Events
     {
-        public List<Event> events;
+        public List<Event> events { get; set; }
     }
 }

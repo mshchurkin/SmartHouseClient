@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Вход в систему" Height="300" Width="250">
     <Grid Background="WhiteSmoke">
-        <Label Foreground="Blue" FontSize="18" HorizontalAlignment="Center" Grid.Row="0" Margin="8,10,8,0">Контроль умным зданием</Label>
+        <Label Foreground="Blue" FontSize="18" HorizontalAlignment="Center" Grid.Row="0" Margin="8,10,8,0">Контроль зданием</Label>
         <Label Foreground="Blue" FontSize="16" HorizontalAlignment="Center" Grid.Row="1" Margin="0,70,0,0">Логин</Label>
         <TextBox x:Name="loginTextBox" HorizontalAlignment="Center" Height="25" Width="200" Margin="0,99,0,140" FontSize="18" BorderBrush="Blue"/>
         <Label Foreground="Blue" FontSize="16" HorizontalAlignment="Center" Margin="0,124,0,0" Content="Пароль"/>

@@ -23,34 +23,55 @@ namespace SmartHouseClient
     /// </summary>
     public partial class ScenarioCreator : Window
     {
-        String SERVER_PATH = "http://167.99.141.138:8080/api/";
-        public string TOKEN = "";
-        public Scenario sc1;
-        ObservableCollection<ScenarioItem> readyItems = new ObservableCollection<ScenarioItem>();
+        String SERVER_PATH = "";
+        string TOKEN = "";
+        string SCENARIO_ID = "";
+        string HOUSE_ID = "";
 
-        public ScenarioCreator(Scenario sc, String TOKEN)
+        ObservableCollection<Condition> readyConditions = new ObservableCollection<Condition>();
+        ObservableCollection<Action> readyActions = new ObservableCollection<Action>();
+
+
+        public ScenarioCreator(String TOKEN, String SERVER_PATH, String SCENARIO_ID, String HOUSE_ID)
         {
             this.TOKEN = TOKEN;
-            sc1 = sc;
+            this.SERVER_PATH = SERVER_PATH;
+            this.SCENARIO_ID = SCENARIO_ID;
+            this.HOUSE_ID = HOUSE_ID;
+
             InitializeComponent();
             LoadData();
-            itemsGrid.ItemsSource = readyItems;
             TimerCheck();
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            AddScenarioItem addScenarioItem = new AddScenarioItem(SERVER_PATH,TOKEN, HOUSE_ID, SCENARIO_ID);
+            addScenarioItem.Show();
         }
 
         private void addElem_Click(object sender, RoutedEventArgs e)
         {
-
+            AddScenarioItem addScenarioItem = new AddScenarioItem(SERVER_PATH,TOKEN, HOUSE_ID, SCENARIO_ID);
+            addScenarioItem.Show();
         }
 
         private void delElem_Click(object sender, RoutedEventArgs e)
         {
-
+            Condition c = ifGrid.SelectedItem as Condition;
+            if (c != null)
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    String request = SERVER_PATH + "scenarioRemoveCondition/" + SCENARIO_ID + " /" + c.id + "/" + TOKEN;
+                    try
+                    {
+                        var json = httpClient.GetStringAsync(request).Result;
+                    }
+                    catch (Exception ev) { }
+                }
+            }
         }
 
         async void TimerCheck()
@@ -76,24 +97,24 @@ namespace SmartHouseClient
             try
             {
 
-                ScenarioItems scItems = new ScenarioItems();
+                Conditions scItems = new Conditions();
                 using (var httpClient = new HttpClient())
                 {
-                    String request = SERVER_PATH + "scenario/" + sc1.id + "/" + TOKEN;
+                    String request = SERVER_PATH + "scenarioConditions/" + SCENARIO_ID + "/" + TOKEN;
                     try
                     {
                         var json = httpClient.GetStringAsync(request).Result;
-                        scItems = JsonConvert.DeserializeObject<ScenarioItems>(json.ToString());
+                        scItems = JsonConvert.DeserializeObject<Conditions>(json.ToString());
                     }
                     catch (Exception e) { }
                 }
-                if (scItems.scenarioItems != null)
+                if (scItems.conditions != null)
                 {
                     App.Current.Dispatcher.Invoke(() =>
                     {
-                        readyItems = new ObservableCollection<ScenarioItem>(scItems.scenarioItems);
-                        itemsGrid.ItemsSource = null;
-                        itemsGrid.ItemsSource = readyItems;
+                        readyConditions = new ObservableCollection<Condition>(scItems.conditions);
+                        ifGrid.ItemsSource = null;
+                        ifGrid.ItemsSource = readyConditions;
 
                     });
                 }
@@ -101,13 +122,72 @@ namespace SmartHouseClient
                 {
                     App.Current.Dispatcher.Invoke(() =>
                     {
-                        readyItems.Clear();
-                        itemsGrid.ItemsSource = null;
+                        readyConditions.Clear();
+                        ifGrid.ItemsSource = null;
                     });
                 }
 
             }
             catch (Exception e) { }
+
+            try
+            {
+
+                Actions actions = new Actions();
+                using (var httpClient = new HttpClient())
+                {
+                    String request = SERVER_PATH + "scenarioActions/" + SCENARIO_ID + "/" + TOKEN;
+                    try
+                    {
+                        var json = httpClient.GetStringAsync(request).Result;
+                        actions = JsonConvert.DeserializeObject<Actions>(json.ToString());
+                    }
+                    catch (Exception e) { }
+                }
+                if (actions.actions != null)
+                {
+                    App.Current.Dispatcher.Invoke(() =>
+                    {
+                        readyActions = new ObservableCollection<Action>(actions.actions);
+                        thenGrid.ItemsSource = null;
+                        thenGrid.ItemsSource = readyConditions;
+
+                    });
+                }
+                else
+                {
+                    App.Current.Dispatcher.Invoke(() =>
+                    {
+                        readyActions.Clear();
+                        thenGrid.ItemsSource = null;
+                    });
+                }
+
+            }
+            catch (Exception e) { }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            AddResult addResult = new AddResult(SERVER_PATH,TOKEN, HOUSE_ID, SCENARIO_ID);
+            addResult.Show();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Action a = thenGrid.SelectedItem as Action;
+            if (a != null)
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    String request = SERVER_PATH + "scenarioRemoveAction/" + SCENARIO_ID + "/" + a.id + "/" + TOKEN;
+                    try
+                    {
+                        var json = httpClient.GetStringAsync(request).Result;
+                    }
+                    catch (Exception ev) { }
+                }
+            }
         }
     }
 }

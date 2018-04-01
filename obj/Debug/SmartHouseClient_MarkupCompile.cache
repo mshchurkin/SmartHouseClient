@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\smd\Documents\GitHub\SmartHouseClient\obj\Debug\
+\\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\
 SmartHouseClient
 none
 false
 DEBUG;TRACE
-C:\Users\smd\Documents\GitHub\SmartHouseClient\App.xaml
-12-1584654969
+\\Mac\Home\Documents\GitHub\SmartHouseClient\App.xaml
+161557214648
 
-32-1077386782
-141203042290
-AddGadget.xaml;AddScenarioItem.xaml;ControlPanel.xaml;EditGadget.xaml;EditSensor.xaml;FirstWindow.xaml;IntegrationPanel.xaml;LoginWindow.xaml;ScenarioCreator.xaml;SignUpWindow.xaml;SubscriptionSelect.xaml;AddSensor.xaml;
+41-701784275
+14502569427
+AddGadget.xaml;AddResult.xaml;AddScenario.xaml;AddScenarioItem.xaml;AddTimerScenarioItem.xaml;ControlPanel.xaml;EditGadget.xaml;EditSensor.xaml;FirstWindow.xaml;InsertServerWidnow.xaml;IntegrationPanel.xaml;LoginWindow.xaml;ScenarioCreator.xaml;SignUpWindow.xaml;SubscriptionSelect.xaml;AddSensor.xaml;
 
 False
 

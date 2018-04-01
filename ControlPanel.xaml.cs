@@ -43,7 +43,7 @@ namespace SmartHouseClient
         {
             InitializeComponent();
             TOKEN = user.token;
-            if (user.isIntegrator == false)
+            if (user.userType != "INTEGRATOR")
             {
                 HOUSE_ID_SENSORS = user.houseId;
                 HOUSE_ID_ACTORS = user.houseId;
@@ -62,8 +62,13 @@ namespace SmartHouseClient
                 housesCombo.Visibility = Visibility.Hidden;
                 housesACT.Visibility = Visibility.Hidden;
                 housesCombo2.Visibility = Visibility.Hidden;
-                houseComboScen.Visibility = Visibility.Hidden;
+                housesComboScen.Visibility = Visibility.Hidden;
                 housesComboBox.Visibility = Visibility.Hidden;
+                l1.Visibility = Visibility.Hidden;
+                l2.Visibility = Visibility.Hidden;
+                l3.Visibility = Visibility.Hidden;
+                l4.Visibility = Visibility.Hidden;
+                l5.Visibility = Visibility.Hidden;
             }
             else
             {
@@ -77,37 +82,37 @@ namespace SmartHouseClient
                 }
                 readyHouses = new ObservableCollection<House>(houses.houses);
 
-
-                housesCombo.ItemsSource = readyHouses;
-                housesCombo.DisplayMemberPath = "name";
-                housesCombo.SelectedIndex = 1;
-                housesACT.ItemsSource = readyHouses;
-                housesACT.DisplayMemberPath = "name";
-                housesACT.SelectedIndex = 1;
-                housesCombo2.ItemsSource = readyHouses;
-                housesCombo2.DisplayMemberPath = "name";
-                housesCombo2.SelectedIndex = 1;
-                houseComboScen.ItemsSource = readyHouses;
-                houseComboScen.DisplayMemberPath = "name";
-                houseComboScen.SelectedIndex = 1;
-                housesComboBox.ItemsSource = readyHouses;
-                housesComboBox.DisplayMemberPath = "name";
-                housesComboBox.SelectedIndex = 1;
-
-
                 if (readyHouses.Count != 0)
                 {
-                    HOUSE_ID_SENSORS = readyHouses[1].id;
-                    HOUSE_ID_ACTORS = readyHouses[1].id;
-                    HOUSE_ID_JOURNALS = readyHouses[1].id;
-                    HOUSE_ID_USERS = readyHouses[1].id;
-                    HOUSE_ID_SCENARIOS = readyHouses[1].id;
+                    housesCombo.ItemsSource = readyHouses;
+                    housesCombo.DisplayMemberPath = "name";
+                    housesCombo.SelectedIndex = 0;
+                    housesACT.ItemsSource = readyHouses;
+                    housesACT.DisplayMemberPath = "name";
+                    housesACT.SelectedIndex = 0;
+                    housesCombo2.ItemsSource = readyHouses;
+                    housesCombo2.DisplayMemberPath = "name";
+                    housesCombo2.SelectedIndex = 0;
+                    housesComboScen.ItemsSource = readyHouses;
+                    housesComboScen.DisplayMemberPath = "name";
+                    housesComboScen.SelectedIndex = 0;
+                    housesComboBox.ItemsSource = readyHouses;
+                    housesComboBox.DisplayMemberPath = "name";
+                    housesComboBox.SelectedIndex = 0;
+
+
+
+                    HOUSE_ID_SENSORS = readyHouses[0].id;
+                    HOUSE_ID_ACTORS = readyHouses[0].id;
+                    HOUSE_ID_JOURNALS = readyHouses[0].id;
+                    HOUSE_ID_USERS = readyHouses[0].id;
+                    HOUSE_ID_SCENARIOS = readyHouses[0].id;
                 }
                 housesDataGrid.ItemsSource = readyHouses;
 
             }
 
-            LoadData(user.isIntegrator);
+            LoadData(user.userType);
 
             sensorsGrid.ItemsSource = readySensors;
             actorsGrid.ItemsSource = readyActors;
@@ -115,7 +120,7 @@ namespace SmartHouseClient
             scenarioDataGrid.ItemsSource = readyScenarios;
             usersDataGrid.ItemsSource = readyUsers;
 
-            TimerCheck(user.isIntegrator);
+            TimerCheck(user.userType);
             TimerCheck2();
         }
 
@@ -130,7 +135,7 @@ namespace SmartHouseClient
 
         private void addSensorBtn_Click(object sender, RoutedEventArgs e)
         {
-            AddSensor addSensor = new AddSensor(HOUSE_ID_SENSORS, TOKEN);
+            AddSensor addSensor = new AddSensor(HOUSE_ID_SENSORS, TOKEN, SERVER_PATH);
             addSensor.Show();
         }
 
@@ -151,9 +156,13 @@ namespace SmartHouseClient
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Sensor s = sensorsGrid.SelectedItem as Sensor;
-
-            EditSensor editSensor = new EditSensor(s, TOKEN);
-            editSensor.Show();
+            var final = SensorsStore.sensors.Where(x => x.id == s.id);
+            if (final.Count() != 0)
+            {
+                Sensor finalS = final.First();
+                EditSensor editSensor = new EditSensor(finalS, TOKEN, SERVER_PATH);
+                editSensor.Show();
+            }
         }
 
         private void addUserBtn_Click(object sender, RoutedEventArgs e)
@@ -164,18 +173,22 @@ namespace SmartHouseClient
 
         private void addScenario_Click(object sender, RoutedEventArgs e)
         {
-            ScenarioCreator scenarioCreator = new ScenarioCreator(null, TOKEN);
-            scenarioCreator.Show();
+            AddScenario addScenario = new AddScenario(SERVER_PATH, TOKEN);
+            addScenario.Show();
         }
 
         private void delSensor_Click(object sender, RoutedEventArgs e)
         {
             Sensor s = sensorsGrid.SelectedItem as Sensor;
-            using (var httpClient = new HttpClient())
+            try
             {
-                String request = SERVER_PATH + "/sensorDelete/" + s.id + "/" + TOKEN;
-                var json = httpClient.GetStringAsync(request).Result;
+                using (var httpClient = new HttpClient())
+                {
+                    String request = SERVER_PATH + "/sensorDelete/" + s.id + "/" + TOKEN;
+                    var json = httpClient.GetStringAsync(request).Result;
+                }
             }
+            catch (Exception ex) { }
         }
         async void TimerCheck2()
         {
@@ -195,21 +208,21 @@ namespace SmartHouseClient
             });
         }
 
-        async void TimerCheck(bool housesNeeded)
+        async void TimerCheck(String userType)
         {
             do
             {
-                await GetData(5000, housesNeeded);
+                await GetData(5000, userType);
 
             } while (true);
         }
 
-        Task GetData(int time, bool housesNeeded)
+        Task GetData(int time, String userType)
         {
             return Task.Run(() =>
             {
                 Thread.Sleep(time);
-                LoadData(housesNeeded);
+                LoadData(userType);
                 CheckDanger();
             });
         }
@@ -219,7 +232,7 @@ namespace SmartHouseClient
             using (var httpClient = new HttpClient())
             {
                 Extremes extremes = new Extremes();
-                String request = SERVER_PATH + "extremeList/" +HOUSE_ID_SENSORS+"/"+ TOKEN;
+                String request = SERVER_PATH + "extremeList/" + HOUSE_ID_SENSORS + "/" + TOKEN;
                 try
                 {
                     var json = httpClient.GetStringAsync(request).Result;
@@ -227,17 +240,20 @@ namespace SmartHouseClient
                 }
                 catch (Exception edv) { }
                 List<Extreme> exCheck = extremes.extremes;
-                foreach(Extreme e in exCheck)
+                if (exCheck != null)
                 {
-                    MessageBox.Show("Нешататная ситуация ID дома: " + e.houseId + ", ID датчика: " + e.sensorId + ", значение: " + e.value);
+                    foreach (Extreme e in exCheck)
+                    {
+                        lError.Content = "Нешататная ситуация ID дома: " + e.houseId + ", ID датчика: " + e.sensorId + ", значение: " + e.value;
+                    }
                 }
             }
         }
-        private void LoadData(bool housesNeeded)
+        private void LoadData(String userType)
         {
             try
             {
-                if (housesNeeded)
+                if (userType == "INTEGRATOR")
                 {
                     Houses houses = new Houses();
                     using (var httpClient = new HttpClient())
@@ -247,7 +263,8 @@ namespace SmartHouseClient
                         {
                             var json = httpClient.GetStringAsync(request).Result;
                             houses = JsonConvert.DeserializeObject<Houses>(json.ToString());
-                        }catch (Exception edv) { }
+                        }
+                        catch (Exception edv) { }
                     }
                     if (houses.houses != null)
                     {
@@ -434,7 +451,7 @@ namespace SmartHouseClient
                 {
                     App.Current.Dispatcher.Invoke(() =>
                     {
-                        readyScenarios.Clear();
+                        readyUsers.Clear();
                         usersDataGrid.ItemsSource = null;
 
                     });
@@ -476,29 +493,17 @@ namespace SmartHouseClient
 
         private void housesACT_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (housesACT.SelectedItem != null)
-            {
-                House hACT = housesACT.SelectedItem as House;
-                HOUSE_ID_ACTORS = hACT.id;
-            }
+
         }
 
         private void housesCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (housesCombo.SelectedItem != null)
-            {
-                House hSEN = housesCombo.SelectedItem as House;
-                HOUSE_ID_SENSORS = hSEN.id;
-            }
+
         }
 
         private void housesCombo2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (housesCombo2.SelectedItem != null)
-            {
-                House hEVENT = housesCombo2.SelectedItem as House;
-                HOUSE_ID_SENSORS = hEVENT.id;
-            }
+
         }
 
         private void delHouseBtn_Click(object sender, RoutedEventArgs e)
@@ -510,6 +515,43 @@ namespace SmartHouseClient
                 {
                     String request = SERVER_PATH + "/houseDelete/" + h.id + "/" + TOKEN;
                     var json = httpClient.GetStringAsync(request).Result;
+                }
+
+                Houses houses = new Houses();
+                using (var httpClient = new HttpClient())
+                {
+                    String request = SERVER_PATH + "houses/" + TOKEN;
+                    var json = httpClient.GetStringAsync(request).Result;
+                    houses = JsonConvert.DeserializeObject<Houses>(json.ToString());
+                }
+                readyHouses = new ObservableCollection<House>(houses.houses);
+
+                if (readyHouses.Count != 0)
+                {
+                    housesCombo.ItemsSource = null;
+                    housesCombo.ItemsSource = readyHouses;
+                    housesCombo.DisplayMemberPath = "name";
+                    housesCombo.SelectedIndex = 0;
+
+                    housesACT.ItemsSource = null;
+                    housesACT.ItemsSource = readyHouses;
+                    housesACT.DisplayMemberPath = "name";
+                    housesACT.SelectedIndex = 0;
+
+                    housesCombo2.ItemsSource = null;
+                    housesCombo2.ItemsSource = readyHouses;
+                    housesCombo2.DisplayMemberPath = "name";
+                    housesCombo2.SelectedIndex = 0;
+
+                    housesComboScen.ItemsSource = null;
+                    housesComboScen.ItemsSource = readyHouses;
+                    housesComboScen.DisplayMemberPath = "name";
+                    housesComboScen.SelectedIndex = 0;
+
+                    housesComboBox.ItemsSource = null;
+                    housesComboBox.ItemsSource = readyHouses;
+                    housesComboBox.DisplayMemberPath = "name";
+                    housesComboBox.SelectedIndex = 0;
                 }
             }
             catch (Exception ed) { }
@@ -532,25 +574,68 @@ namespace SmartHouseClient
         }
         private void addGadgetBtn_Click(object sender, RoutedEventArgs e)
         {
-            AddGadget addGadget = new AddGadget(HOUSE_ID_SENSORS, TOKEN);
+            AddGadget addGadget = new AddGadget(HOUSE_ID_SENSORS, TOKEN, SERVER_PATH);
             addGadget.Show();
         }
 
         private void housesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (housesComboBox.SelectedItem != null)
-            {
-                House hUSER = housesCombo2.SelectedItem as House;
-                HOUSE_ID_USERS = hUSER.id;
-            }
+
         }
 
         private void scenarioDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Scenario s = scenarioDataGrid.SelectedItem as Scenario;
+            if (s != null)
+            {
+                ScenarioCreator sc = new ScenarioCreator(TOKEN,SERVER_PATH,s.id,s.houseId);
+                sc.Show();
+            }
+        }
 
-            ScenarioCreator sc = new ScenarioCreator(s, TOKEN);
-            sc.Show();
+        private void housesCombo_DropDownClosed(object sender, EventArgs e)
+        {
+            if (housesCombo.SelectedItem != null)
+            {
+                House hSEN = housesCombo.SelectedItem as House;
+                HOUSE_ID_SENSORS = hSEN.id;
+            }
+        }
+
+        private void housesComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            if (housesComboBox.SelectedItem != null)
+            {
+                House hUSER = housesComboBox.SelectedItem as House;
+                HOUSE_ID_USERS = hUSER.id;
+            }
+        }
+
+        private void housesACT_DropDownClosed(object sender, EventArgs e)
+        {
+            if (housesACT.SelectedItem != null)
+            {
+                House hACT = housesACT.SelectedItem as House;
+                HOUSE_ID_ACTORS = hACT.id;
+            }
+        }
+
+        private void housesComboScen_DropDownClosed(object sender, EventArgs e)
+        {
+            if (housesComboScen.SelectedItem != null)
+            {
+                House hSCEN = housesComboScen.SelectedItem as House;
+                HOUSE_ID_SCENARIOS = hSCEN.id;
+            }
+        }
+
+        private void housesCombo2_DropDownClosed(object sender, EventArgs e)
+        {
+            if (housesCombo2.SelectedItem != null)
+            {
+                House hEVENT = housesCombo2.SelectedItem as House;
+                HOUSE_ID_JOURNALS = hEVENT.id;
+            }
         }
     }
 }

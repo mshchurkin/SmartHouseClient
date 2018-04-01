@@ -57,14 +57,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Action.cs" />
+    <Compile Include="Actions.cs" />
     <Compile Include="Actor.cs" />
     <Compile Include="Actors.cs" />
     <Compile Include="AddGadget.xaml.cs">
       <DependentUpon>AddGadget.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddResult.xaml.cs">
+      <DependentUpon>AddResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddScenario.xaml.cs">
+      <DependentUpon>AddScenario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddScenarioItem.xaml.cs">
       <DependentUpon>AddScenarioItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddTimerScenarioItem.xaml.cs">
+      <DependentUpon>AddTimerScenarioItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Condition.cs" />
+    <Compile Include="Conditions.cs" />
     <Compile Include="ControlPanel.xaml.cs">
       <DependentUpon>ControlPanel.xaml</DependentUpon>
     </Compile>
@@ -81,6 +94,9 @@
     </Compile>
     <Compile Include="House.cs" />
     <Compile Include="Houses.cs" />
+    <Compile Include="InsertServerWidnow.xaml.cs">
+      <DependentUpon>InsertServerWidnow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IntegrationPanel.xaml.cs">
       <DependentUpon>IntegrationPanel.xaml</DependentUpon>
     </Compile>
@@ -95,6 +111,7 @@
     <Compile Include="Scenarios.cs" />
     <Compile Include="Sensor.cs" />
     <Compile Include="Sensors.cs" />
+    <Compile Include="SensorsStore.cs" />
     <Compile Include="SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
@@ -110,7 +127,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddScenario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddScenarioItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddTimerScenarioItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -127,6 +156,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FirstWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="InsertServerWidnow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartHouseClient"
         mc:Ignorable="d"
-        Title="Регистрация нового жильца" Height="250" Width="250" >
+        Title="Регистрация" Height="250" Width="250" >
     <Grid>
         <TextBox x:Name="nameTextBox" Height="24"  TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,30,0,0" Width="120"/>
         <PasswordBox x:Name="password1PassBox" Width="120" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,80,0,0"/>
-        <Button x:Name="SignUpBtn" Content="Зарегистрировать нового жильца"  Width="195" HorizontalContentAlignment="Center" Height="30" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" Click="SignUpBtn_Click"/>
+        <Button x:Name="SignUpBtn" Content="Зарегистрировать нового пользователя"  Width="230" HorizontalContentAlignment="Center" Height="30" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" Click="SignUpBtn_Click"/>
         <Label Content="Имя:" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="10,5,0,0"/>
         <Label Content="Пароль:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="77" Margin="10,60,0,0"/>
-        <Label Content="Выбор дома:" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="120" Margin="10,110,0,0"/>
+        <Label Content="Выбор здания:" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="120" Margin="10,110,0,0"/>
         <ComboBox x:Name="houseComboBox" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>

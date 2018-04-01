@@ -29,6 +29,10 @@ namespace SmartHouseClient
         String SERVER_PATH = "http://167.99.141.138:8080/api/";
         public LoginWindow()
         {
+            if (SERVER_PATH.Length == 0)
+            {
+
+            }
             InitializeComponent();
         }
 
@@ -40,8 +44,8 @@ namespace SmartHouseClient
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             User user = new User();
-            //try
-            //{
+            try
+            {
                 using (var httpClient = new HttpClient())
                 {
                     var json = httpClient.GetStringAsync(SERVER_PATH + "/auth/" + loginTextBox.Text + "/" + passBox.Password).Result;
@@ -54,11 +58,11 @@ namespace SmartHouseClient
                     controlPanel.Show();
                     this.Close();
                 }
-            //}
-            //catch (Exception ex) 
-            //{
-            //    errorLabel.Content = "Неправильный логин или пароль";
-            //}
+            }
+            catch (Exception ex)
+            {
+                errorLabel.Content = "Неправильный логин или пароль";
+            }
         }
 
         private void Login()

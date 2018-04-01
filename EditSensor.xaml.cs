@@ -24,12 +24,17 @@ namespace SmartHouseClient
         string SERVER_PATH = "";
         bool isDiscrete = false;
         Sensor sk;
-        public EditSensor(Sensor s , String TOKEN)
+        public EditSensor(Sensor s , String TOKEN, String SERVER_PATH)
         {
             sk = s;
-            isActiveCheckBox.IsChecked = s.active;
-            checkTxt.Text = s.extreme;
+            //isActiveCheckBox.IsChecked = s.active;
             InitializeComponent();
+            checkTxt.Text = s.extreme;
+            downTxt.Text = s.MinValue.ToString();
+            upTxt.Text = s.MaxValue.ToString();
+            this.SERVER_PATH = SERVER_PATH;
+            this.TOKEN = TOKEN;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -54,19 +59,38 @@ namespace SmartHouseClient
                     }
                     else
                     {
-                        String ACTIVE = "FALSE";
-                        if (isActiveCheckBox.IsChecked == true)
-                            ACTIVE = "true";
-                        try
+                        if (Int32.TryParse(upTxt.Text, out k) == false)
                         {
-                            using (var httpClient = new HttpClient())
+                            MessageBox.Show("Неверный ввод порога значения. Доступные значения от 0 до 1024 для аналоговых датчиков и занчения 0/1 для дискретных");
+                        }
+                        else
+                        {
+                            if (Int32.TryParse(downTxt.Text, out k) == false)
                             {
-                                String request = SERVER_PATH + "sensorEdit/" + sk.houseId + "/" + TOKEN + "/" + ACTIVE + "/" + checkTxt.Text;
-                                var json = httpClient.GetStringAsync(request).Result;
-                                this.Close();
+                                MessageBox.Show("Неверный ввод порога значения. Доступные значения от 0 до 1024 для аналоговых датчиков и занчения 0/1 для дискретных");
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    using (var httpClient = new HttpClient())
+                                    {
+                                        String request = SERVER_PATH + "sensorEdit/" + sk.id + "/" + TOKEN + "/" + checkTxt.Text;
+                                        var json = httpClient.GetStringAsync(request).Result;
+                                        var final = SensorsStore.sensors.Where(x => x.id == sk.id);
+                                        if (final.Count() != 0)
+                                        {
+                                            Sensor finalS = final.First();
+                                            finalS.MaxValue = Int32.Parse(upTxt.Text);
+                                            finalS.MinValue = Int32.Parse(downTxt.Text);
+                                            
+                                        }
+                                        this.Close();
+                                    }
+                                }
+                                catch (Exception em) { }
                             }
                         }
-                        catch (Exception em) { }
                     }
                 }
             }
