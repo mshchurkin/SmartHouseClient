@@ -9,14 +9,17 @@
     <Grid>
         <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="15,10,0,0">Наименование</Label>
         <TextBox x:Name="nameBox" Height="30" Width="200"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,40,0,0"></TextBox>
-        <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="10,100,0,0">Порог нештатной ситуации</Label>
-        <TextBox x:Name="checkTxt" Height="30" Width="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,130,0,0"></TextBox>
-        <RadioButton x:Name="discrete" Height="40" Margin="20,0,0,40" VerticalAlignment="Bottom">Дискретный</RadioButton>
-        <RadioButton x:Name="analog" Height="40" Margin="150,0,0,40" Content="Аналоговый" VerticalAlignment="Bottom"/>
+        <Grid x:Name="AnalogControls">
+            <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="10,100,0,0">Порог нештатной ситуации</Label>
+            <TextBox x:Name="checkTxt" Height="30" Width="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,130,0,0"></TextBox>
+            <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="10,200,0,0" Content="Верхний порог"/>
+            <TextBox x:Name="upTxt" Height="30" Width="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,200,0,0"/>
+            <TextBox x:Name="downTxt" Height="30" Width="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,160,0,0"/>
+            <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="10,160,0,0">Нижний порог</Label>
+        </Grid>
+        <RadioButton x:Name="discrete" Height="40" Margin="20,0,0,40" VerticalAlignment="Bottom" Checked="discrete_Checked">Дискретный</RadioButton>
+        <RadioButton x:Name="analog" Height="40" Margin="150,0,0,40" Content="Аналоговый" VerticalAlignment="Bottom" Checked="analog_Checked"/>
         <Button Height="30" Width="150" VerticalAlignment="Bottom" Margin="10" Click="Button_Click">Добавить датчик</Button>
-        <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="10,200,0,0" Content="Верхний порог"/>
-        <TextBox x:Name="upTxt" Height="30" Width="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,200,0,0"/>
-        <TextBox x:Name="downTxt" Height="30" Width="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,160,0,0"/>
-        <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="10,160,0,0">Нижний порог</Label>
+        
     </Grid>
 </Window>

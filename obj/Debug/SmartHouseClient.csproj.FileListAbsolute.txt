@@ -18,7 +18,6 @@
 \\Mac\Home\Documents\GitHub\SmartHouseClient\bin\Debug\SmartHouseClient.pdb
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\ControlPanel.g.cs
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\FirstWindow.g.cs
-\\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\IntegrationPanel.g.cs
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\LoginWindow.g.cs
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\SignUpWindow.g.cs
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\SubscriptionSelect.g.cs
@@ -30,7 +29,6 @@
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\LoginWindow.baml
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\SignUpWindow.baml
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\SubscriptionSelect.baml
-\\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\IntegrationPanel.baml
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.g.resources
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.Properties.Resources.resources
 \\Mac\Home\Documents\GitHub\SmartHouseClient\obj\Debug\SmartHouseClient.csproj.GenerateResource.Cache

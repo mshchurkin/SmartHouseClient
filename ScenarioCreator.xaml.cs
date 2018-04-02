@@ -64,7 +64,7 @@ namespace SmartHouseClient
             {
                 using (var httpClient = new HttpClient())
                 {
-                    String request = SERVER_PATH + "scenarioRemoveCondition/" + SCENARIO_ID + " /" + c.id + "/" + TOKEN;
+                    String request = SERVER_PATH + "scenarioRemoveCondition/" + SCENARIO_ID + "/" + c.id + "/" + TOKEN;
                     try
                     {
                         var json = httpClient.GetStringAsync(request).Result;
@@ -100,7 +100,7 @@ namespace SmartHouseClient
                 Conditions scItems = new Conditions();
                 using (var httpClient = new HttpClient())
                 {
-                    String request = SERVER_PATH + "scenarioConditions/" + SCENARIO_ID + "/" + TOKEN;
+                    String request = SERVER_PATH + "scenarioConditions/" + SCENARIO_ID + "/" + TOKEN+"";
                     try
                     {
                         var json = httpClient.GetStringAsync(request).Result;
@@ -136,7 +136,7 @@ namespace SmartHouseClient
                 Actions actions = new Actions();
                 using (var httpClient = new HttpClient())
                 {
-                    String request = SERVER_PATH + "scenarioActions/" + SCENARIO_ID + "/" + TOKEN;
+                    String request = SERVER_PATH + "scenarioActions/" + SCENARIO_ID + "/" + TOKEN+"";
                     try
                     {
                         var json = httpClient.GetStringAsync(request).Result;
@@ -150,7 +150,7 @@ namespace SmartHouseClient
                     {
                         readyActions = new ObservableCollection<Action>(actions.actions);
                         thenGrid.ItemsSource = null;
-                        thenGrid.ItemsSource = readyConditions;
+                        thenGrid.ItemsSource =  readyActions;
 
                     });
                 }
@@ -180,7 +180,7 @@ namespace SmartHouseClient
             {
                 using (var httpClient = new HttpClient())
                 {
-                    String request = SERVER_PATH + "scenarioRemoveAction/" + SCENARIO_ID + "/" + a.id + "/" + TOKEN;
+                    String request = SERVER_PATH + "scenarioRemoveAction/" + SCENARIO_ID + "/" + a.id + "/" + TOKEN+"";
                     try
                     {
                         var json = httpClient.GetStringAsync(request).Result;

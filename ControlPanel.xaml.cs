@@ -23,7 +23,7 @@ namespace SmartHouseClient
     /// </summary>
     public partial class ControlPanel : Window
     {
-        String SERVER_PATH = "http://167.99.141.138:8080/api/";
+        String SERVER_PATH = "";
         public string TOKEN = "";
         public string HOUSE_ID_SENSORS = "";
         public string HOUSE_ID_ACTORS = "";
@@ -39,10 +39,11 @@ namespace SmartHouseClient
         ObservableCollection<User> readyUsers = new ObservableCollection<User>();
 
 
-        public ControlPanel(User user)
+        public ControlPanel(User user,String SERVER_PATH)
         {
             InitializeComponent();
             TOKEN = user.token;
+            this.SERVER_PATH = SERVER_PATH;
             if (user.userType != "INTEGRATOR")
             {
                 HOUSE_ID_SENSORS = user.houseId;
@@ -240,13 +241,21 @@ namespace SmartHouseClient
                 }
                 catch (Exception edv) { }
                 List<Extreme> exCheck = extremes.extremes;
-                if (exCheck != null)
+                try
                 {
-                    foreach (Extreme e in exCheck)
+                    if (exCheck != null)
                     {
-                        lError.Content = "Нешататная ситуация ID дома: " + e.houseId + ", ID датчика: " + e.sensorId + ", значение: " + e.value;
+                        foreach (Extreme e in exCheck)
+                        {
+                            Thread.Sleep(5000);
+                            App.Current.Dispatcher.Invoke(() =>
+                            {
+                                lError.Content = "Нешататная ситуация! ID датчика: " + e.sensorId + ", значение: " + e.value;
+                            });
+                        }
                     }
                 }
+                catch (Exception exc) { }
             }
         }
         private void LoadData(String userType)
@@ -635,6 +644,18 @@ namespace SmartHouseClient
             {
                 House hEVENT = housesCombo2.SelectedItem as House;
                 HOUSE_ID_JOURNALS = hEVENT.id;
+            }
+        }
+
+        private void actorsGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Actor a = actorsGrid.SelectedItem as Actor;
+            var final = SensorsStore.actors.Where(x => x.id == a.id);
+            if (final.Count() != 0)
+            {
+                Actor finalA = final.First();
+                EditGadget edit = new EditGadget(finalA, TOKEN, SERVER_PATH);
+                edit.Show();
             }
         }
     }

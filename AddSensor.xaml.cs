@@ -93,5 +93,15 @@ namespace SmartHouseClient
                 }
             }
         }
+
+        private void discrete_Checked(object sender, RoutedEventArgs e)
+        {
+            AnalogControls.Visibility = Visibility.Hidden;
+        }
+
+        private void analog_Checked(object sender, RoutedEventArgs e)
+        {
+            AnalogControls.Visibility = Visibility.Visible;
+        }
     }
 }

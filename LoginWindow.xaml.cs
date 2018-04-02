@@ -26,13 +26,10 @@ namespace SmartHouseClient
     /// </summary>
     public partial class LoginWindow : Window
     {
-        String SERVER_PATH = "http://167.99.141.138:8080/api/";
-        public LoginWindow()
+        String SERVER_PATH = "";
+        public LoginWindow(String SERVER_PATH)
         {
-            if (SERVER_PATH.Length == 0)
-            {
-
-            }
+            this.SERVER_PATH = SERVER_PATH;
             InitializeComponent();
         }
 
@@ -54,7 +51,7 @@ namespace SmartHouseClient
 
                 if (user.token.ToString() != String.Empty)
                 {
-                    ControlPanel controlPanel = new ControlPanel(user);
+                    ControlPanel controlPanel = new ControlPanel(user,SERVER_PATH);
                     controlPanel.Show();
                     this.Close();
                 }

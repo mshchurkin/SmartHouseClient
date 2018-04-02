@@ -24,7 +24,7 @@ namespace SmartHouseClient
         string SERVER_PATH = "";
         bool isDiscrete = false;
         Sensor sk;
-        public EditSensor(Sensor s , String TOKEN, String SERVER_PATH)
+        public EditSensor(Sensor s, String TOKEN, String SERVER_PATH)
         {
             sk = s;
             //isActiveCheckBox.IsChecked = s.active;
@@ -34,6 +34,10 @@ namespace SmartHouseClient
             upTxt.Text = s.MaxValue.ToString();
             this.SERVER_PATH = SERVER_PATH;
             this.TOKEN = TOKEN;
+            if (s.sensorType== "DISCRETE")
+            {
+                AnalogContorls.Visibility = Visibility.Hidden;
+            }
 
         }
 
@@ -42,54 +46,47 @@ namespace SmartHouseClient
             int k = 0;
             if (Int32.TryParse(checkTxt.Text, out k) == false)
             {
-                MessageBox.Show("Неверный ввод порога значения. Доступные значения от 0 до 1024 для аналоговых датчиков и занчения 0/1 для дискретных");
+                MessageBox.Show("Неверный ввод порога значения.");
             }
             else
             {
-                if ((k < 0) || (k > 1024))
-                {
-                    MessageBox.Show("Неверный ввод порога значения. Доступные значения от 0 до 1024 для аналоговых датчиков и занчения 0/1 для дискретных");
 
+                if ((isDiscrete == true) && (k > 1))
+                {
+                    MessageBox.Show("Неверный ввод порога значения.");
                 }
                 else
                 {
-                    if ((isDiscrete== true) && (k > 1))
+                    if (Int32.TryParse(upTxt.Text, out k) == false)
                     {
-                        MessageBox.Show("Неверный ввод порога значения. Доступные значения от 0 до 1024 для аналоговых датчиков и занчения 0/1 для дискретных");
+                        MessageBox.Show("Неверный ввод порога значения.");
                     }
                     else
                     {
-                        if (Int32.TryParse(upTxt.Text, out k) == false)
+                        if (Int32.TryParse(downTxt.Text, out k) == false)
                         {
-                            MessageBox.Show("Неверный ввод порога значения. Доступные значения от 0 до 1024 для аналоговых датчиков и занчения 0/1 для дискретных");
+                            MessageBox.Show("Неверный ввод порога значения.");
                         }
                         else
                         {
-                            if (Int32.TryParse(downTxt.Text, out k) == false)
+                            try
                             {
-                                MessageBox.Show("Неверный ввод порога значения. Доступные значения от 0 до 1024 для аналоговых датчиков и занчения 0/1 для дискретных");
-                            }
-                            else
-                            {
-                                try
+                                using (var httpClient = new HttpClient())
                                 {
-                                    using (var httpClient = new HttpClient())
+                                    String request = SERVER_PATH + "sensorEdit/" + sk.id + "/" + TOKEN + "/" + checkTxt.Text;
+                                    var json = httpClient.GetStringAsync(request).Result;
+                                    var final = SensorsStore.sensors.Where(x => x.id == sk.id);
+                                    if (final.Count() != 0)
                                     {
-                                        String request = SERVER_PATH + "sensorEdit/" + sk.id + "/" + TOKEN + "/" + checkTxt.Text;
-                                        var json = httpClient.GetStringAsync(request).Result;
-                                        var final = SensorsStore.sensors.Where(x => x.id == sk.id);
-                                        if (final.Count() != 0)
-                                        {
-                                            Sensor finalS = final.First();
-                                            finalS.MaxValue = Int32.Parse(upTxt.Text);
-                                            finalS.MinValue = Int32.Parse(downTxt.Text);
-                                            
-                                        }
-                                        this.Close();
+                                        Sensor finalS = final.First();
+                                        finalS.MaxValue = Int32.Parse(upTxt.Text);
+                                        finalS.MinValue = Int32.Parse(downTxt.Text);
+
                                     }
+                                    this.Close();
                                 }
-                                catch (Exception em) { }
                             }
+                            catch (Exception em) { }
                         }
                     }
                 }
@@ -97,3 +94,4 @@ namespace SmartHouseClient
         }
     }
 }
+

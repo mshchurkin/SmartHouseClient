@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartHouseClient"
         mc:Ignorable="d"
-        Title="Редактирование сценария" Height="500" Width="400">
+        Title="Редактирование сценария" Height="500" Width="700">
     <Grid Background="#FFE5E5E5">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="350"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Label Content="Условия" FontSize="18" Margin="0,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Center"/>
             <DataGrid x:Name="ifGrid" VerticalAlignment="Top" Margin="5,40,5,0" Height="340" IsReadOnly="True"></DataGrid>
             <Button Height="30" Width="170" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" Click="Button_Click">Добавить условие</Button>
-            <Button Height="30" Width="170" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" Click="Button_Click">Удалить условие</Button>
+            <Button Height="30" Width="170" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" Click="delElem_Click">Удалить условие</Button>
         </Grid>
         <GridSplitter Width="3" Background="Black"></GridSplitter>
         <Grid Grid.Column="1">

@@ -10,9 +10,11 @@
         <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="15,20,0,0">Порог нештатной ситуации</Label>
         <TextBox x:Name="checkTxt" Height="30" Width="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,20,0,0"></TextBox>
         <Button Height="30" Width="170" VerticalAlignment="Bottom" Margin="10" Click="Button_Click">Изменить параметры датчика</Button>
+        <Grid x:Name="AnalogContorls">
         <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="10,90,0,0" Content="Верхний порог"/>
         <TextBox x:Name="upTxt" Height="30" Width="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,90,0,0"/>
         <TextBox x:Name="downTxt" Height="30" Width="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,50,0,0"/>
         <Label FontSize="14" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="10,50,0,0">Нижний порог</Label>
+        </Grid>
     </Grid>
 </Window>
